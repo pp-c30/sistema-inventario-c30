@@ -7,6 +7,7 @@ exports.Server = void 0;
 const express_1 = __importDefault(require("express"));
 const index_route_1 = __importDefault(require("./routes/index.route"));
 const movimiento_route_1 = __importDefault(require("./routes/movimiento.route"));
+const articulo_route_1 = __importDefault(require("./routes/articulo.route"));
 class Server {
     constructor() {
         this.app = express_1.default();
@@ -20,6 +21,7 @@ class Server {
     routes() {
         this.app.use(index_route_1.default);
         this.app.use(movimiento_route_1.default);
+        this.app.use(articulo_route_1.default);
     }
     middleware() {
         this.app.use(express_1.default.json());
