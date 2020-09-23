@@ -10,46 +10,46 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const database_1 = require("../database");
-class ArticuloController {
-    listarArticulo(req, res) {
+class CategoriaController {
+    listarCategoria(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
             const db = yield database_1.conexion();
-            let mov = yield db.query('select * from articulo');
-            return res.json(mov);
+            let cat = yield db.query('select * from categoria');
+            return res.json(cat);
         });
     }
-    guardarArticulo(req, res) {
+    guardarCategoria(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
             const db = yield database_1.conexion();
-            const mov = req.body;
-            yield db.query("insert into articulo set ?", [mov]);
-            return res.json('El articulo fue archivado exitosamente');
+            const cat = req.body;
+            yield db.query("insert into categoria set ?", [cat]);
+            return res.json('La categoria fue creada exitosamente');
         });
     }
-    eliminarArticulo(req, res) {
+    eliminarCategoria(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
             const db = yield database_1.conexion();
-            let id_articulo = req.params.id_articulo;
-            yield db.query("delete from articulo where id_articulo = ?", [id_articulo]);
-            return res.json('El articulo se eliminó con exito');
+            let id_categoria = req.params.id_categoria;
+            yield db.query("delete from categoria where id_categoria = ?", [id_categoria]);
+            return res.json('La categoria se eliminó con exito');
         });
     }
-    actualizarArticulo(req, res) {
+    actualizarCategoria(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
             const db = yield database_1.conexion();
-            let id_articulo = req.params.id_articulo;
-            let new_articulo = req.body;
-            yield db.query("update articulo set ? where id_articulo = ?", [new_articulo, id_articulo]);
-            return res.json('El articulo se actualizó con exito');
+            let id_categoria = req.params.id_categoria;
+            let new_categoria = req.body;
+            yield db.query("update categoria set ? where id_categoria = ?", [new_categoria, id_categoria]);
+            return res.json('La categoria se actualizó con exito');
         });
     }
-    obtenerArticulo(req, res) {
+    obtenerCategoria(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
             const db = yield database_1.conexion();
-            let id_articulo = req.params.id_articulo;
-            let unArticulo = yield db.query("select * from articulo where id_articulo = ?", [id_articulo]);
-            return res.json(unArticulo[0]);
+            let id_categoria = req.params.id_categoria;
+            let unCategoria = yield db.query("select * from categoria where id_categoria = ?", [id_categoria]);
+            return res.json(unCategoria[0]);
         });
     }
 }
-exports.ArticuloController = ArticuloController;
+exports.CategoriaController = CategoriaController;

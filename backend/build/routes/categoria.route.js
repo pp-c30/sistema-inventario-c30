@@ -1,0 +1,12 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+const express_1 = require("express");
+const categoria_controller_1 = require("../controllers/categoria.controller");
+let categoriaController = new categoria_controller_1.CategoriaController();
+const enrutadorCategoria = express_1.Router();
+enrutadorCategoria.route('/categoria').get(categoriaController.listarCategoria);
+enrutadorCategoria.route('/categoria').post(categoriaController.guardarCategoria);
+enrutadorCategoria.route('/categoria/:id_categoria').delete(categoriaController.eliminarCategoria);
+enrutadorCategoria.route('/categoria/:id_categoria').put(categoriaController.actualizarCategoria);
+enrutadorCategoria.route('/categoria/:id_categoria').get(categoriaController.obtenerCategoria);
+exports.default = enrutadorCategoria;
