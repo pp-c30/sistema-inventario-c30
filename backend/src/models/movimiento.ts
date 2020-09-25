@@ -5,3 +5,9 @@ export interface IMov{
     destino_seccion:number;
     fecha_hora:Date;
 }
+/*
+"id_movimiento": "1",
+"id_articulo": "1",
+"destino_seccion": "2",
+"fecha_hora": "2020-09-26"
+*/
