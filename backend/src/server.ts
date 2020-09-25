@@ -1,11 +1,10 @@
-
 import  express, { Application }  from "express";
-
 import enrutadorIndex from "./routes/index.route";
 import enrutadorMovimiento from "./routes/movimiento.route";
 import enrutadorArticulo from "./routes/articulo.route";
 import enrutadorCategoria from "./routes/categoria.route";
 import enrutadorSeccion from "./routes/seccion.route";
+
 export class Server {
     
     app:Application;
