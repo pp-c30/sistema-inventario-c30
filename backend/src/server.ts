@@ -4,6 +4,7 @@ import enrutadorMovimiento from "./routes/movimiento.route";
 import enrutadorArticulo from "./routes/articulo.route";
 import enrutadorCategoria from "./routes/categoria.route";
 import enrutadorSeccion from "./routes/seccion.route";
+import path from "path";
 
 export class Server {
     
@@ -29,6 +30,7 @@ export class Server {
         this.app.use(enrutadorArticulo);
         this.app.use(enrutadorCategoria);
         this.app.use(enrutadorSeccion);
+        this.app.use('/upload',express.static(path.resolve('uploads')));
     }
 
     middleware(){

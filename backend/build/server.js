@@ -10,6 +10,7 @@ const movimiento_route_1 = __importDefault(require("./routes/movimiento.route"))
 const articulo_route_1 = __importDefault(require("./routes/articulo.route"));
 const categoria_route_1 = __importDefault(require("./routes/categoria.route"));
 const seccion_route_1 = __importDefault(require("./routes/seccion.route"));
+const path_1 = __importDefault(require("path"));
 class Server {
     constructor() {
         this.app = express_1.default();
@@ -26,6 +27,7 @@ class Server {
         this.app.use(articulo_route_1.default);
         this.app.use(categoria_route_1.default);
         this.app.use(seccion_route_1.default);
+        this.app.use('/upload', express_1.default.static(path_1.default.resolve('uploads')));
     }
     middleware() {
         this.app.use(express_1.default.json());

@@ -19,7 +19,22 @@ export class ArticuloController {
 
         const mov:IArt = req.body;
 
-        await db.query("insert into articulo set ?",[mov]);
+        const url_img = req.file.path;
+
+        const guardarArticulo = {
+            categoria:req.body.categoria,
+            cant_total:req.body.cant_total,
+            cant:req.body.cant,
+            fecha_alta:req.body.fecha_alta,
+            descripcion:req.body.descripcion,
+            seccion:req.body.seccion,
+            estado:req.body.estado,
+            valor:req.body.valor,
+            img:url_img,
+            origen:req.body.origen
+        }
+
+        await db.query("insert into articulo set ?",[guardarArticulo, mov]);
     
         return res.json('El articulo fue archivado exitosamente');
     }
