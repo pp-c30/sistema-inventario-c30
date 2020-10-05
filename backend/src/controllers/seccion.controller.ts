@@ -1,4 +1,4 @@
-import {conexion} from '../database'
+import {conexion} from '../database';
 import {Request, Response} from "express";
 import {ISec} from "../models/seccion";
 
@@ -6,8 +6,6 @@ export class SeccionController {
     
     public async listarSeccion(req:Request, res:Response){
 
-    
-    
         const db = await conexion();
         
         let sec = await db.query('select * from seccion');

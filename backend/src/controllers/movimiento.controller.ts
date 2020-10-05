@@ -1,12 +1,10 @@
-import {conexion} from '../database'
+import {conexion} from '../database';
 import {Request, Response} from "express";
 import {IMov} from "../models/movimiento";
 
 export class MovimientoController {
     
     public async listarMovimiento(req:Request, res:Response){
-
-    
     
         const db = await conexion();
         

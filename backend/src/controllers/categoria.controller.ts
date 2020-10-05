@@ -1,12 +1,10 @@
-import {conexion} from '../database'
+import {conexion} from '../database';
 import {Request, Response} from "express";
 import {ICat} from "../models/categoria";
 
 export class CategoriaController {
     
     public async listarCategoria(req:Request, res:Response){
-
-    
     
         const db = await conexion();
         

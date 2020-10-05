@@ -1,4 +1,4 @@
-import {conexion} from '../database'
+import {conexion} from '../database';
 import {Request, Response} from "express";
 import {IArt} from "../models/articulo";
 
@@ -6,8 +6,6 @@ export class ArticuloController {
     
     public async listarArticulo(req:Request, res:Response){
 
-    
-    
         const db = await conexion();
         
         let mov = await db.query('select * from articulo');
