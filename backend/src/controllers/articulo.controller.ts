@@ -1,7 +1,14 @@
 import {conexion} from '../database';
 import {Request, Response} from "express";
 import {IArt} from "../models/articulo";
+import cloudinary from "cloudinary";
+import fs from "fs-extra";
 
+cloudinary.v2.config ({
+    cloud_name:'dcbnlcpb6',
+    api_key:'188895581713543',
+    api_secret:'Gq1EHc8G4xzv7W-QZxPhYTSM75Q'
+});
 export class ArticuloController {
     
     public async listarArticulo(req:Request, res:Response){
@@ -20,6 +27,11 @@ export class ArticuloController {
         const mov:IArt = req.body;
 
         const url_img = req.file.path;
+        //se busca la imagen en la carpeta upload para luego subirla a cloudinary
+       const resultado_cloud = await cloudinary.v2.uploader.upload(req.file.path);
+         console.log(resultado_cloud);
+
+        //se guarda datos en la base
 
         const guardarArticulo = {
             categoria:req.body.categoria,
@@ -30,11 +42,14 @@ export class ArticuloController {
             seccion:req.body.seccion,
             estado:req.body.estado,
             valor:req.body.valor,
-            img:url_img,
+            img:resultado_cloud.url,
+            public_id:resultado_cloud.public_id,
             origen:req.body.origen
         }
 
         await db.query("insert into articulo set ?",[guardarArticulo, mov]);
+
+        fs.unlink(req.file.path);
     
         return res.json('El articulo fue archivado exitosamente');
     }
