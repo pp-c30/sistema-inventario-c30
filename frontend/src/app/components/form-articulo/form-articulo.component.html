@@ -1,0 +1,48 @@
+<div class="card">
+    <div class="card-header">
+        Formulario de Articulo
+    </div>
+    <div class="card-body">
+        <form>
+            <div class="form-group">
+                <label for="exampleFormControlFile1">Seleccione una Imagen</label>
+                <input type="file" class="form-control-file" id="exampleFormControlFile1">
+            </div>
+            <div class="form-group">
+                <select class="form-control" id="exampleSelect1">
+                  <option>Seleccione la Categoría</option>
+                  <option *ngFor="let categoria of getCat">{{categoria.descripcion}}</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <input placeholder="¿Cuál es la cantidad total de artículos?" type="text" class="form-control">
+            </div>
+            <div class="form-group">
+                <select class="form-control" id="exampleSelect1">
+                  <option>Seleccione la Sección</option>
+                  <option *ngFor="let seccion of getSec">{{seccion.nombre_seccion}}</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <input placeholder="¿Cuántos artículos son para esta sección?" type="text" class="form-control">
+            </div>
+            <div class="form-group">
+                <input placeholder="Añada un Descripción para el Artículo" type="text" class="form-control">
+            </div>
+            <div class="form-group">
+                <input placeholder="¿En qué estado se encuentra?" type="text" class="form-control">
+            </div>
+            <div class="form-group">
+                <input placeholder="¿Cuál es el valor estimativo del conjunto de Artículos?" type="text" class="form-control">
+            </div>
+            <div class="form-group">
+                <input placeholder="¿Cuál es la procedencia de los Artículos?" type="text" class="form-control">
+            </div>
+            <div class="form-group">
+                <input placeholder="¿Cuál es la Fecha de Alta?" type="text" class="form-control">
+            </div>
+
+            <button type="button" class="btn btn-outline-danger">Bye!</button>
+        </form>
+    </div>
+</div>
