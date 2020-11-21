@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { CategoriaService } from "../../services/categoria.service";
 
 @Component({
   selector: 'app-categoria',
@@ -7,9 +8,18 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CategoriaComponent implements OnInit {
 
-  constructor() { }
+  getCat = [];
+
+  constructor(private arService:CategoriaService) { }
 
   ngOnInit(): void {
+    this.listarCategoria();
+  }
+  listarCategoria(){
+    this.arService.getCategoria().subscribe(
+      resultado => this.getCat = resultado,
+      error => console.log(error)
+    )
   }
 
 }
