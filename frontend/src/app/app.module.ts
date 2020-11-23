@@ -13,7 +13,7 @@ import { FormCategoriaComponent } from './components/form-categoria/form-categor
 import { FormSeccionComponent } from './components/form-seccion/form-seccion.component';
 import { CategoriaComponent } from './components/categoria/categoria.component';
 import { SeccionComponent } from './components/seccion/seccion.component';
-
+import { ReactiveFormsModule,FormsModule } from '@angular/forms';
 @NgModule({
   declarations: [
     AppComponent,
@@ -31,7 +31,9 @@ import { SeccionComponent } from './components/seccion/seccion.component';
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
-    HttpClientModule
+    HttpClientModule,
+    ReactiveFormsModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

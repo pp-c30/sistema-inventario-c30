@@ -13,5 +13,10 @@ export class CategoriaService {
 
     return this.http.get<ICat[]>('http://localhost:3000/categoria');
   }
+    saveCategoria(unCategoria:ICat){
 
+        return this.http.post('http://localhost:3000/categoria', unCategoria);
+
+    }
 }
+ 

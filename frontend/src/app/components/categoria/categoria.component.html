@@ -1,3 +1,4 @@
+
 <div style="text-align: center;">
     <table class="table table-dark">
         <thead>
@@ -14,4 +15,15 @@
             </tr>
         </tbody>
     </table>
+</div>
+<div class="card">
+    <div class="card-header">Formulario de categoria </div>
+    <div class="card-body">
+        <form [formGroup]="formCat" (ngSubmit)="guardarCategoria()">
+            <div class="form-group">
+                <input formControlName="descripcion" placeholder="¿Cual es el nombre de la categoria?" type="text" class="form-control">
+            </div>
+            <button class="btn btn-success">Guardar categoria</button>
+        </form>
+    </div>
 </div>
