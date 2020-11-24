@@ -10,6 +10,10 @@ import { HeaderComponent } from './components/header/header.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { ArticuloComponent } from './components/articulo/articulo.component';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
+import { CategoriaComponent } from './components/categoria/categoria.component';
+import { SeccionComponent } from './components/seccion/seccion.component';
+import { FormCategoriaComponent } from './components/form-categoria/form-categoria.component';
+import { FormSeccionComponent } from './components/form-seccion/form-seccion.component';
 
 @NgModule({
   declarations: [
@@ -17,7 +21,11 @@ import { ReactiveFormsModule, FormsModule } from '@angular/forms';
     BodyComponent,
     HeaderComponent,
     FooterComponent,
-    ArticuloComponent
+    ArticuloComponent,
+    CategoriaComponent,
+    SeccionComponent,
+    FormCategoriaComponent,
+    FormSeccionComponent
   ],
   imports: [
     BrowserModule,
