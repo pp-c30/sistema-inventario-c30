@@ -1,56 +1,128 @@
-<div style="text-align: center;">
-    <table class="table table-dark">
-        <thead>
-            <tr>
-                <th>Imagen</th>
-                <th>Categoría</th>
-                <th>Cantidad Total</th>
-                <th>Cantidad en Sección</th>
-                <th>Sección</th>
-                <th>Descripción</th>
-                <th>Estado</th>
-                <th>Valor</th>
-                <th>Origen</th>
-                <th>Fecha de Alta</th>
-                <th>Fecha de Baja</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr *ngFor="let articulo of getArt">
-                <td>
-                    {{articulo.img}}
-                </td>
-                <td>
-                    {{articulo.categoria}}
-                </td>
-                <td>
-                    {{articulo.cant_total}}
-                </td>
-                <td>
-                    {{articulo.cant}}
-                </td>
-                <td>
-                    {{articulo.seccion}}
-                </td>
-                <td>
-                    {{articulo.descripcion}}
-                </td>
-                <td>
-                    {{articulo.estado}}
-                </td>
-                <td>
-                    {{articulo.valor}}
-                </td>
-                <td>
-                    {{articulo.origen}}
-                </td>
-                <td>
-                    {{articulo.fecha_alta}}
-                </td>
-                <td>
-                    {{articulo.fecha_baja}}
-                </td>
-            </tr>
-        </tbody>
-    </table>
+<div class="row">
+    <div class="col-sm-3"></div>
+    <div class="col-sm-6">
+
+        <div class="card">
+            <div class="card-header">
+                Formulario de Articulo
+            </div>
+            <div class="card-body">
+                <form [formGroup]="formArt" (ngSubmit)="guardarArticulo()" novalidate>
+                    <div class="form-group">
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <label for="exampleFormControlFile1">Seleccione una Imagen</label>
+                                <input (change)="showImage($event)" formControlName="img" type="file" class="form-control-file">
+                            </div>
+                            <div class="col-sm-6">
+                                <img style="height: 150px;" class="img-fluid" [src]=" this.imgPreview || 'assets/img/img-not-found.png'">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <select formControlName="categoria" class="form-control" id="exampleSelect1">
+                    <option value="0" selected disabled>Seleccione la Categoría</option>
+                  <option [value]="categoria.id_categoria" *ngFor="let categoria of getCat">{{categoria.descripcion}}</option>
+                </select>
+                    </div>
+                    <div class="form-group">
+                        <input formControlName="cant_total" placeholder="¿Cuál es la cantidad total de artículos?" type="text" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <select formControlName="seccion" class="form-control" id="exampleSelect1">
+                  <option value="0" selected disabled>Seleccione la Sección</option>
+                  <option [value]="seccion.id_seccion" *ngFor="let seccion of getSec">{{seccion.nombre_seccion}}</option>
+                </select>
+                    </div>
+                    <div class="form-group">
+                        <input formControlName="cant" placeholder="¿Cuántos artículos son para esta sección?" type="text" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <input formControlName="descripcion" placeholder="Añada un Descripción para el Artículo" type="text" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <input formControlName="estado" placeholder="¿En qué estado se encuentra?" type="text" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <input formControlName="valor" placeholder="¿Cuál es el valor estimativo del conjunto de Artículos?" type="text" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <input formControlName="origen" placeholder="¿Cuál es la procedencia de los Artículos?" type="text" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <input formControlName="fecha_alta" placeholder="¿Cuál es la Fecha de Alta?" type="text" class="form-control">
+                    </div>
+
+                    <button [disabled]="formArt.invalid" type="submit" class="btn btn-outline-danger">Bye!</button>
+                </form>
+            </div>
+        </div>
+
+
+    </div>
+    <div class="col-sm-3"></div>
+</div>
+<div class="row">
+    <div class="col-sm-2"></div>
+    <div class="col-sm-8">
+
+        <div style="text-align: center;">
+            <table class="table table-dark">
+                <thead>
+                    <tr>
+                        <th>Imagen</th>
+                        <th>Categoría</th>
+                        <th>Cantidad Total</th>
+                        <th>Cantidad en Sección</th>
+                        <th>Sección</th>
+                        <th>Descripción</th>
+                        <th>Estado</th>
+                        <th>Valor</th>
+                        <th>Origen</th>
+                        <th>Fecha de Alta</th>
+                        <th>Fecha de Baja</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let articulo of getArt">
+                        <td>
+                            <img [src]="articulo.img">
+                        </td>
+                        <td>
+                            {{articulo.categoria}}
+                        </td>
+                        <td>
+                            {{articulo.cant_total}}
+                        </td>
+                        <td>
+                            {{articulo.cant}}
+                        </td>
+                        <td>
+                            {{articulo.seccion}}
+                        </td>
+                        <td>
+                            {{articulo.descripcion}}
+                        </td>
+                        <td>
+                            {{articulo.estado}}
+                        </td>
+                        <td>
+                            {{articulo.valor}}
+                        </td>
+                        <td>
+                            {{articulo.origen}}
+                        </td>
+                        <td>
+                            {{articulo.fecha_alta}}
+                        </td>
+                        <td>
+                            {{articulo.fecha_baja}}
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+    </div>
+    <div class="col-sm-2"></div>
 </div>

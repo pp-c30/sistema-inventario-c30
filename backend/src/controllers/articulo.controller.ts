@@ -22,9 +22,9 @@ export class ArticuloController {
     
     public async guardarArticulo(req:Request, res:Response){
 
-        const db = await conexion();
+        try {
 
-        const mov:IArt = req.body;
+        const db = await conexion();
 
         const url_img = req.file.path;
         //se busca la imagen en la carpeta upload para luego subirla a cloudinary
@@ -33,25 +33,30 @@ export class ArticuloController {
 
         //se guarda datos en la base
 
-        const guardarArticulo = {
-            categoria:req.body.categoria,
-            cant_total:req.body.cant_total,
-            cant:req.body.cant,
+        const guardarArticulo:IArt = {
+            categoria:Number(req.body.categoria),
+            cant_total:Number(req.body.cant_total),
+            cant:Number(req.body.cant),
             fecha_alta:req.body.fecha_alta,
             descripcion:req.body.descripcion,
-            seccion:req.body.seccion,
-            estado:req.body.estado,
-            valor:req.body.valor,
+            seccion:Number(req.body.seccion),
+            estado:Number(req.body.estado),
+            valor:parseFloat(req.body.valor),
             img:resultado_cloud.url,
             public_id:resultado_cloud.public_id,
             origen:req.body.origen
         }
 
-        await db.query("insert into articulo set ?",[guardarArticulo, mov]);
+        await db.query("insert into articulo set ?",[guardarArticulo]);
 
         fs.unlink(req.file.path);
     
-        return res.json('El articulo fue archivado exitosamente');
+        res.json('El articulo fue archivado exitosamente');
+        }catch(error)
+        {
+            res.json('Error al guardar un artículo');
+            console.log(error);
+        }
     }
     
     public async eliminarArticulo(req:Request, res:Response){
