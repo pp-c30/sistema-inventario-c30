@@ -18,4 +18,14 @@ export class SeccionService {
     return this.http.post('http://localhost:3000/seccion', unSeccion);
 
 }
+updateSeccion(unSeccion:ISec){
+
+  let id:number = unSeccion.id_seccion;
+  return this.http.put('http://localhost:3000/seccion/'+id,unSeccion);
+}
+
+deleteSeccion(id:number){
+  return this.http.delete('http://localhost:3000/seccion/'+id);
+
+}
 }

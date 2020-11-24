@@ -18,5 +18,15 @@ export class CategoriaService {
         return this.http.post('http://localhost:3000/categoria', unCategoria);
 
     }
+    updateCategoria(unCategoria:ICat){
+
+      let id:number = unCategoria.id_categoria;
+      return this.http.put('http://localhost:3000/categoria/'+id,unCategoria);
+    }
+
+    deleteCategoria(id:number){
+      return this.http.delete('http://localhost:3000/categoria/'+id);
+
+    }
 }
  
