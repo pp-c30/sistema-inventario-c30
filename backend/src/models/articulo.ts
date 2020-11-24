@@ -8,10 +8,11 @@ export interface IArt {
     fecha_baja?:Date;
     descripcion:string;
     seccion:number;
-    estado:boolean;
-    valor:string;
-    img:string;
+    estado:Number;
+    valor:Number;
+    img?:string;
     origen:string;
+    public_id:string;
 }
 
 /* 

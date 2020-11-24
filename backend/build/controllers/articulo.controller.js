@@ -30,29 +30,34 @@ class ArticuloController {
     }
     guardarArticulo(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
-            const db = yield database_1.conexion();
-            const mov = req.body;
-            const url_img = req.file.path;
-            //se busca la imagen en la carpeta upload para luego subirla a cloudinary
-            const resultado_cloud = yield cloudinary_1.default.v2.uploader.upload(req.file.path);
-            console.log(resultado_cloud);
-            //se guarda datos en la base
-            const guardarArticulo = {
-                categoria: req.body.categoria,
-                cant_total: req.body.cant_total,
-                cant: req.body.cant,
-                fecha_alta: req.body.fecha_alta,
-                descripcion: req.body.descripcion,
-                seccion: req.body.seccion,
-                estado: req.body.estado,
-                valor: req.body.valor,
-                img: resultado_cloud.url,
-                public_id: resultado_cloud.public_id,
-                origen: req.body.origen
-            };
-            yield db.query("insert into articulo set ?", [guardarArticulo, mov]);
-            fs_extra_1.default.unlink(req.file.path);
-            return res.json('El articulo fue archivado exitosamente');
+            try {
+                const db = yield database_1.conexion();
+                const url_img = req.file.path;
+                //se busca la imagen en la carpeta upload para luego subirla a cloudinary
+                const resultado_cloud = yield cloudinary_1.default.v2.uploader.upload(req.file.path);
+                console.log(resultado_cloud);
+                //se guarda datos en la base
+                const guardarArticulo = {
+                    categoria: Number(req.body.categoria),
+                    cant_total: Number(req.body.cant_total),
+                    cant: Number(req.body.cant),
+                    fecha_alta: req.body.fecha_alta,
+                    descripcion: req.body.descripcion,
+                    seccion: Number(req.body.seccion),
+                    estado: Number(req.body.estado),
+                    valor: parseFloat(req.body.valor),
+                    img: resultado_cloud.url,
+                    public_id: resultado_cloud.public_id,
+                    origen: req.body.origen
+                };
+                yield db.query("insert into articulo set ?", [guardarArticulo]);
+                fs_extra_1.default.unlink(req.file.path);
+                res.json('El articulo fue archivado exitosamente');
+            }
+            catch (error) {
+                res.json('Error al guardar un artículo');
+                console.log(error);
+            }
         });
     }
     eliminarArticulo(req, res) {
@@ -65,11 +70,52 @@ class ArticuloController {
     }
     actualizarArticulo(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
-            const db = yield database_1.conexion();
-            let id_articulo = req.params.id_articulo;
-            let new_articulo = req.body;
-            yield db.query("update articulo set ? where id_articulo = ?", [new_articulo, id_articulo]);
-            return res.json('El articulo se actualizó con exito');
+            try {
+                const db = yield database_1.conexion();
+                let id_articulo = req.params.id_articulo;
+                var updateArticulo;
+                var public_id_anterior = req.body.public_id;
+                if (req.file) {
+                    const resultado_cloud = yield cloudinary_1.default.v2.uploader.upload(req.file.path);
+                    updateArticulo = {
+                        categoria: req.body.categoria,
+                        seccion: req.body.seccion,
+                        cant: req.body.cant,
+                        cant_total: req.body.cant_total,
+                        descripcion: req.body.descripcion,
+                        estado: req.body.estado,
+                        fecha_alta: req.body.fecha_alta,
+                        valor: req.body.valor,
+                        origen: req.body.origen,
+                        fecha_baja: req.body.fecha_baja,
+                        img: resultado_cloud.url,
+                        public_id: resultado_cloud.public_id,
+                    };
+                    yield db.query('update articulo set ? where id_articulo = ?', [updateArticulo, id_articulo]);
+                    fs_extra_1.default.unlink(req.file.path);
+                    yield cloudinary_1.default.v2.uploader.destroy(public_id_anterior);
+                    return res.json('El articulo se actualizó con exito');
+                }
+                else {
+                    updateArticulo = {
+                        categoria: req.body.categoria,
+                        seccion: req.body.seccion,
+                        cant: req.body.cant,
+                        cant_total: req.body.cant_total,
+                        descripcion: req.body.descripcion,
+                        estado: req.body.estado,
+                        fecha_alta: req.body.fecha_alta,
+                        valor: req.body.valor,
+                        origen: req.body.origen,
+                        fecha_baja: req.body.fecha_baja
+                    };
+                    yield db.query('update articulo set ? where id_articulo = ?', [updateArticulo, id_articulo]);
+                    return res.json('El articulo se actualizó con exito');
+                }
+            }
+            catch (error) {
+                console.log(error);
+            }
         });
     }
     obtenerArticulo(req, res) {

@@ -10,6 +10,7 @@ export interface IArt {
     seccion:number;
     estado:boolean;
     valor:string;
-    img:string;
+    img?:string;
     origen:string;
+    public_id:string;
 }

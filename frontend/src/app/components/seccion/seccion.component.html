@@ -1,1 +1,28 @@
-<p>seccion works!</p>
+<div style="text-align: center;">
+    <table class="table table-dark">
+        <thead>
+            <tr>
+                <th>nombre de la seccion</th>
+            </tr>
+        </thead>
+        <tbody> 
+            <tr *ngFor="let seccion of getSec">
+                <td>
+                    {{seccion.nombre_seccion}}
+                </td>
+              
+            </tr>
+        </tbody>
+    </table>
+</div>
+<div class="card">
+    <div class="card-header">Formulario de seccion </div>
+    <div class="card-body">
+        <form [formGroup]="formSec" (ngSubmit)="guardarSeccion()">
+            <div class="form-group">
+                <input formControlName="nombre_seccion" placeholder="¿Cual es el nombre de la seccion?" type="text" class="form-control">
+            </div>
+            <button class="btn btn-success">Guardar seccion</button>
+        </form>
+    </div>
+</div>

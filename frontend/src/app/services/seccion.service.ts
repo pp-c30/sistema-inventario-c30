@@ -13,5 +13,9 @@ export class SeccionService {
 
     return this.http.get<ISec[]>('http://localhost:3000/seccion');
   }
+  saveSeccion(unSeccion:ISec){
 
+    return this.http.post('http://localhost:3000/seccion', unSeccion);
+
+}
 }
