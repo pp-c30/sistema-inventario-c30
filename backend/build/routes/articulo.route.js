@@ -11,6 +11,6 @@ const enrutadorArticulo = express_1.Router();
 enrutadorArticulo.route('/articulo').get(articuloController.listarArticulo);
 enrutadorArticulo.route('/articulo').post(multer_1.default.single('img'), articuloController.guardarArticulo);
 enrutadorArticulo.route('/articulo/:id_articulo').delete(articuloController.eliminarArticulo);
-enrutadorArticulo.route('/articulo/:id_articulo').put(articuloController.actualizarArticulo);
+enrutadorArticulo.route('/articulo/:id_articulo').put(multer_1.default.single('img'), articuloController.actualizarArticulo);
 enrutadorArticulo.route('/articulo/:id_articulo').get(articuloController.obtenerArticulo);
 exports.default = enrutadorArticulo;

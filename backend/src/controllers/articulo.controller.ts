@@ -72,15 +72,76 @@ export class ArticuloController {
 
     public async actualizarArticulo(req:Request, res:Response){
 
-        const db = await conexion();
+        try {
 
-        let id_articulo = req.params.id_articulo;
-        let new_articulo = req.body;
+            const db = await conexion();
 
-        await db.query("update articulo set ? where id_articulo = ?", [new_articulo, id_articulo]);
+            let id_articulo = req.params.id_articulo;
 
-        return res.json('El articulo se actualizó con exito');
+            var updateArticulo;
+
+            var public_id_anterior = req.body.public_id
+
+            if(req.file){
+
+                const resultado_cloud = await cloudinary.v2.uploader.upload(req.file.path);
+
+                updateArticulo = {
+
+                    categoria:req.body.categoria,
+                    seccion:req.body.seccion,
+                    cant:req.body.cant,
+                    cant_total:req.body.cant_total,
+                    descripcion:req.body.descripcion,
+                    estado:req.body.estado,
+                    fecha_alta:req.body.fecha_alta,
+                    valor:req.body.valor,
+                    origen:req.body.origen,
+                    fecha_baja:req.body.fecha_baja,
+                    img:resultado_cloud.url,
+                    public_id:resultado_cloud.public_id,
+
+                
+                }
+
+                await db.query('update articulo set ? where id_articulo = ?',[updateArticulo, id_articulo]);
+                
+                fs.unlink(req.file.path);
+
+                await cloudinary.v2.uploader.destroy(public_id_anterior);
+
+                return res.json('El articulo se actualizó con exito');
+            }else{
+
+                updateArticulo = {
+                    categoria:req.body.categoria,
+                    seccion:req.body.seccion,
+                    cant:req.body.cant,
+                    cant_total:req.body.cant_total,
+                    descripcion:req.body.descripcion,
+                    estado:req.body.estado,
+                    fecha_alta:req.body.fecha_alta,
+                    valor:req.body.valor,
+                    origen:req.body.origen,
+                    fecha_baja:req.body.fecha_baja        
+                }
+
+                await db.query('update articulo set ? where id_articulo = ?', [updateArticulo,id_articulo]);
+
+                return res.json('El articulo se actualizó con exito');
+            }
+            
+        } 
+        catch (error) {
+
+            console.log(error);
+        }
+
+
+        
     }
+
+
 
     public async obtenerArticulo(req:Request, res:Response){
 

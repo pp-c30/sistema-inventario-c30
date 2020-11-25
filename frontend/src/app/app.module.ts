@@ -14,6 +14,7 @@ import { CategoriaComponent } from './components/categoria/categoria.component';
 import { SeccionComponent } from './components/seccion/seccion.component';
 import { FormCategoriaComponent } from './components/form-categoria/form-categoria.component';
 import { FormSeccionComponent } from './components/form-seccion/form-seccion.component';
+import { NgxSpinnerModule } from 'ngx-spinner';
 
 @NgModule({
   declarations: [
@@ -33,7 +34,8 @@ import { FormSeccionComponent } from './components/form-seccion/form-seccion.com
     BrowserAnimationsModule,
     HttpClientModule,
     ReactiveFormsModule,
-    FormsModule
+    FormsModule,
+    NgxSpinnerModule
   ],
   providers: [],
   bootstrap: [AppComponent]

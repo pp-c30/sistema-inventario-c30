@@ -3,6 +3,8 @@ import { CategoriaService } from "../../services/categoria.service";
 import { SeccionService } from "../../services/seccion.service";
 import { ArticuloService } from "../../services/articulo.service";
 import { FormBuilder, FormGroup, Validators } from "@angular/forms";
+import { IArt } from 'src/app/models/articulo';
+import { NgxSpinnerService } from "ngx-spinner";
 
 interface HTMLInputEvent{
   target:HTMLInputElement & EventTarget;
@@ -22,14 +24,16 @@ export class ArticuloComponent implements OnInit {
   file: File;
   imgPreview: string | ArrayBuffer;
 
-  constructor(private caService:CategoriaService, private seService:SeccionService, private artService:ArticuloService, private fb: FormBuilder) { 
+  constructor(private spinner:NgxSpinnerService, private caService:CategoriaService, private seService:SeccionService, private artService:ArticuloService, private fb: FormBuilder) { 
 
     this.formArt = this.fb.group({
 
+      id_articulo:[''],
       categoria:[0,[Validators.required]],
       cant_total:['',[Validators.required]],
       cant:[''],
       fecha_alta:['',[Validators.required]],
+      fecha_baja:[''],
       descripcion:[''],
       seccion:[0,[Validators.required]],
       estado:['',[Validators.required]],
@@ -68,6 +72,28 @@ export class ArticuloComponent implements OnInit {
 
   guardarArticulo(){
 
+    if(this.formArt.value.id_articulo){
+
+      this.spinner.show();
+
+    //Actualizar
+      this.artService.updateArticulo(this.formArt.value,this.file).subscribe(
+        resultado=>{
+          console.log(resultado);
+          this.imgPreview = '';
+          this.formArt.reset();
+          this.listarArticulos();
+      this.spinner.hide();
+
+        },
+        error=> console.log(error)
+        
+      )
+
+    }else{
+
+      this.spinner.show();
+      //Guardar
     console.log(this.formArt.value);
     this.artService.saveArticulo(this.formArt.value,this.file).subscribe(
       resultado=>{
@@ -75,11 +101,37 @@ export class ArticuloComponent implements OnInit {
         this.imgPreview = '';
         this.formArt.reset();
         this.listarArticulos();
+    this.spinner.hide();
+
       },
       error=>{
         console.log(error);
       }
     )
+
+    }
+
+    
+  }
+  
+  editarArticulo(articulo:IArt){
+
+    this.formArt.setValue({
+
+      id_articulo:articulo.id_articulo,
+      categoria:articulo.categoria,
+      seccion:articulo.seccion,
+      cant:articulo.cant,
+      cant_total:articulo.cant_total,
+      descripcion:articulo.descripcion,
+      estado:articulo.estado,
+      fecha_alta:articulo.fecha_alta,
+      valor:articulo.valor,
+      origen:articulo.origen,
+      fecha_baja:articulo.fecha_baja,
+      img:''
+    });
+    this.imgPreview = articulo.img;
   }
 
   showImage(evento:HTMLInputEvent){
