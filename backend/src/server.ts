@@ -8,7 +8,7 @@ import enrutadorSeccion from "./routes/seccion.route";
 import path from "path";
 
 export class Server {
-    
+    //Es un atributo perteneciente a express
     app:Application;
 
     constructor (){
