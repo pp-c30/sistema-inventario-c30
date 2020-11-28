@@ -29,12 +29,12 @@
 <div class="card">
     <div class="card-header">Formulario de categoria </div>
     <div class="card-body">
-        <form [formGroup]="formCat" (ngSubmit)="guardarCategoria()"> 
+        <form [formGroup]="formCat" (ngSubmit)="guardarCategoria()" novalidate> 
             <input formControlName="id_categoria" type="hidden">
             <div class="form-group">
-                <input formControlName="descripcion" placeholder="¿Cual es el nombre de la categoria?" type="text" class="form-control">
+                <input [ngClass]="{'is-invalid':(formCat.get('descripcion')?.touched || formCat.get('descripcion')?.dirty) && formCat.get('descripcion')?.invalid}" formControlName="descripcion" placeholder="¿Cual es el nombre de la categoria?" type="text" class="form-control">
             </div>
-            <button class="btn btn-success">Guardar categoria</button>
+            <button [disabled]="formCat.invalid" class="btn btn-success">Guardar categoria</button>
         </form>
     </div>
 </div>

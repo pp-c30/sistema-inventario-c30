@@ -12,8 +12,6 @@ import { ArticuloComponent } from './components/articulo/articulo.component';
 import { CategoriaComponent } from './components/categoria/categoria.component';
 import { SeccionComponent } from './components/seccion/seccion.component';
 import { ReactiveFormsModule,FormsModule } from '@angular/forms';
-import { FormCategoriaComponent } from './components/form-categoria/form-categoria.component';
-import { FormSeccionComponent } from './components/form-seccion/form-seccion.component';
 import { NgxSpinnerModule } from 'ngx-spinner';
 
 @NgModule({
@@ -24,9 +22,7 @@ import { NgxSpinnerModule } from 'ngx-spinner';
     FooterComponent,
     ArticuloComponent,
     CategoriaComponent,
-    SeccionComponent,
-    FormCategoriaComponent,
-    FormSeccionComponent
+    SeccionComponent
   ],
   imports: [
     BrowserModule,

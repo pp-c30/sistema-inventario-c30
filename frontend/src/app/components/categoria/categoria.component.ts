@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { CategoriaService } from "../../services/categoria.service";
-import { FormBuilder, FormGroup,Form } from "@angular/forms";
+import { FormBuilder, FormGroup,Form, Validators } from "@angular/forms";
 import { ICat } from 'src/app/models/categoria';
 @Component({
   selector: 'app-categoria',
@@ -18,7 +18,7 @@ export class CategoriaComponent implements OnInit {
 
       id_categoria:[null],
 
-      descripcion:['']
+      descripcion:['', [Validators.required,Validators.minLength(3)]]
 
     });
    }
