@@ -18,6 +18,11 @@ interface HTMLInputEvent{
 })
 export class ArticuloComponent implements OnInit {
 
+  show = true;
+  tabG = false;
+  tabA = false;
+  op = false;
+
   getCat = [];
   getSec = [];
   getArt = [];
@@ -49,6 +54,22 @@ export class ArticuloComponent implements OnInit {
     this.listarArticulos();
     this.formArt.get('categoria').setValue(0);
     this.formArt.get('seccion').setValue(0);
+  }
+
+  btnNuevoArt(){
+
+    this.tabG = !this.tabG;
+    this.tabA = false;
+    this.op = false;
+    this.formArt.reset();
+    this.imgPreview = '';
+  }
+
+  btnModoEdicion(){
+
+    this.tabA = false;
+    this.tabG = false;
+    this.op = !this.op;
   }
 
   listarCategoria(){
@@ -129,6 +150,8 @@ export class ArticuloComponent implements OnInit {
   }
   */
   editarArticulo(articulo:IArt){
+
+    this.tabA = true;
 
     this.formArt.setValue({
 

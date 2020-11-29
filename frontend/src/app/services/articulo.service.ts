@@ -19,7 +19,7 @@ export class ArticuloService {
     const fd = new FormData();
     
     fd.append('img',file);
-    fd.append('cant',String(unArt.cant));
+    fd.append('cant',String(unArt.cant_total));
     fd.append('cant_total',String(unArt.cant_total));
     fd.append('fecha_alta',String(unArt.fecha_alta));
     fd.append('descripcion',unArt.descripcion);
