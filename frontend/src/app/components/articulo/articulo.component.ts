@@ -134,6 +134,27 @@ export class ArticuloComponent implements OnInit {
     this.imgPreview = articulo.img;
   }
 
+  eliminarArticulo(articulo:IArt){
+
+    if(confirm('¿Esta seguro que desea eliminar este Articulo?')){
+
+      this.spinner.show();
+    this.artService.deleteArticulo(articulo).subscribe(
+
+      resultado => {
+
+        console.log(resultado)
+        this.listarArticulos();
+        this.spinner.hide();
+      },
+      error => {
+
+        console.log(error)
+      }
+    )
+  }
+}
+
   showImage(evento:HTMLInputEvent){
 
     if (evento.target.files && evento.target.files[0]){

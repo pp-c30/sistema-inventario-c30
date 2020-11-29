@@ -54,4 +54,13 @@ export class ArticuloService {
 
   }
 
+  deleteArticulo(articulo:IArt){
+
+    let id_articulo = articulo.id_articulo;
+
+    let public_id = articulo.public_id;
+
+    return this.http.delete('http://localhost:3000/articulo/'+id_articulo+'/'+public_id);
+  }
+
 }
