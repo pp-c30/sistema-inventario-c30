@@ -139,7 +139,7 @@ export class ArticuloComponent implements OnInit {
     if(confirm('¿Esta seguro que desea eliminar este Articulo?')){
 
       this.spinner.show();
-    this.artService.deleteArticulo(articulo).subscribe(
+      this.artService.deleteArticulo(articulo).subscribe(
 
       resultado => {
 
