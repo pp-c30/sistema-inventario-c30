@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { MovimientoService } from "../../services/movimiento.service";
 
 @Component({
   selector: 'app-movimiento',
@@ -7,9 +8,21 @@ import { Component, OnInit } from '@angular/core';
 })
 export class MovimientoComponent implements OnInit {
 
-  constructor() { }
+  getMov = [];
+
+  constructor(private movService:MovimientoService) { }
 
   ngOnInit(): void {
+
+    this.listarMovimiento();
   }
 
+  listarMovimiento(){
+
+    this.movService.getMovimiento().subscribe(
+
+      resultado => this.getMov = resultado,
+      error => console.log(error)
+    )
+  }
 }
