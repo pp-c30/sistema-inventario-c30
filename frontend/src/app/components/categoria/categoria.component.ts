@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { CategoriaService } from "../../services/categoria.service";
-import { FormBuilder, FormGroup,Form } from "@angular/forms";
+import { FormBuilder, FormGroup } from "@angular/forms";
 import { ICat } from 'src/app/models/categoria';
 @Component({
   selector: 'app-categoria',
@@ -10,7 +10,7 @@ import { ICat } from 'src/app/models/categoria';
 export class CategoriaComponent implements OnInit {
 
   getCat = [];
-   formCat:FormGroup;
+  formCat:FormGroup;
 
   constructor(private caService:CategoriaService,private fb: FormBuilder) {
 
