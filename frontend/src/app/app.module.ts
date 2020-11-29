@@ -13,6 +13,7 @@ import { CategoriaComponent } from './components/categoria/categoria.component';
 import { SeccionComponent } from './components/seccion/seccion.component';
 import { ReactiveFormsModule,FormsModule } from '@angular/forms';
 import { NgxSpinnerModule } from 'ngx-spinner';
+import { MovimientoComponent } from './components/movimiento/movimiento.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import { NgxSpinnerModule } from 'ngx-spinner';
     FooterComponent,
     ArticuloComponent,
     CategoriaComponent,
-    SeccionComponent
+    SeccionComponent,
+    MovimientoComponent
   ],
   imports: [
     BrowserModule,
