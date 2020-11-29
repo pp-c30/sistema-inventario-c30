@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CategoriaService } from "../../services/categoria.service";
 import { SeccionService } from "../../services/seccion.service";
+/*import { MovimientoService } from "../../services/movimiento.service";*/
 import { ArticuloService } from "../../services/articulo.service";
 import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 import { IArt } from 'src/app/models/articulo';
@@ -17,6 +18,11 @@ interface HTMLInputEvent{
 })
 export class ArticuloComponent implements OnInit {
 
+  show = true;
+  tabG = false;
+  tabA = false;
+  op = false;
+
   getCat = [];
   getSec = [];
   getArt = [];
@@ -24,7 +30,7 @@ export class ArticuloComponent implements OnInit {
   file: File;
   imgPreview: string | ArrayBuffer;
 
-  constructor(private spinner:NgxSpinnerService, private caService:CategoriaService, private seService:SeccionService, private artService:ArticuloService, private fb: FormBuilder) { 
+  constructor(/*private movService:MovimientoService, */private spinner:NgxSpinnerService, private caService:CategoriaService, private seService:SeccionService, private artService:ArticuloService, private fb: FormBuilder) { 
 
     this.formArt = this.fb.group({
 
@@ -48,6 +54,22 @@ export class ArticuloComponent implements OnInit {
     this.listarArticulos();
     this.formArt.get('categoria').setValue(0);
     this.formArt.get('seccion').setValue(0);
+  }
+
+  btnNuevoArt(){
+
+    this.tabG = !this.tabG;
+    this.tabA = false;
+    this.op = false;
+    this.formArt.reset();
+    this.imgPreview = '';
+  }
+
+  btnModoEdicion(){
+
+    this.tabA = false;
+    this.tabG = false;
+    this.op = !this.op;
   }
 
   listarCategoria(){
@@ -113,8 +135,23 @@ export class ArticuloComponent implements OnInit {
 
     
   }
-  
+/*
+  guardarMovimiento(articulo:IArt){
+
+    this.movService.saveMovimiento(this.formArt.value).subscribe(
+
+      resultado => {
+
+        console.log(resultado);
+        this.formArt.reset();
+      },
+      error => console.log(error)
+    )
+  }
+  */
   editarArticulo(articulo:IArt){
+
+    this.tabA = true;
 
     this.formArt.setValue({
 
@@ -133,6 +170,27 @@ export class ArticuloComponent implements OnInit {
     });
     this.imgPreview = articulo.img;
   }
+
+  eliminarArticulo(articulo:IArt){
+
+    if(confirm('¿Esta seguro que desea eliminar este Articulo?')){
+
+      this.spinner.show();
+      this.artService.deleteArticulo(articulo).subscribe(
+
+      resultado => {
+
+        console.log(resultado)
+        this.listarArticulos();
+        this.spinner.hide();
+      },
+      error => {
+
+        console.log(error)
+      }
+    )
+  }
+}
 
   showImage(evento:HTMLInputEvent){
 

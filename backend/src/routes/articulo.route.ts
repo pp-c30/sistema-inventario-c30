@@ -11,7 +11,7 @@ enrutadorArticulo.route('/articulo').get(articuloController.listarArticulo);
 
 enrutadorArticulo.route('/articulo').post(multer.single('img'),articuloController.guardarArticulo);
 
-enrutadorArticulo.route('/articulo/:id_articulo').delete(articuloController.eliminarArticulo);
+enrutadorArticulo.route('/articulo/:id_articulo/:public_id').delete(articuloController.eliminarArticulo);
 
 enrutadorArticulo.route('/articulo/:id_articulo').put(multer.single('img'),articuloController.actualizarArticulo);
 

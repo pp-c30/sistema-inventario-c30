@@ -1,145 +1,255 @@
-<div class="row">
-    <div class="col-sm-3"></div>
-    <div class="col-sm-6">
+<!--Actualizar-->
+<div *ngIf="tabA">
+    <div class="row">
+        <div class="col-sm-2"></div>
+        <div class="col-sm-8">
 
-        <div class="card">
-            <div class="card-header">
-                Formulario de Articulo
-            </div>
-            <div class="card-body">
-                <form [formGroup]="formArt" (ngSubmit)="guardarArticulo()" novalidate>
-                    <input formControlName="id_articulo" type="hidden" class="form-control">
-                    <div class="form-group">
-                        <div class="row">
-                            <div class="col-sm-6">
-                                <label for="exampleFormControlFile1">Seleccione una Imagen</label>
-                                <input (change)="showImage($event)" formControlName="img" type="file" class="form-control-file">
-                            </div>
-                            <div class="col-sm-6">
-                                <img style="height: 150px;" class="img-fluid" [src]=" this.imgPreview || 'assets/img/img-not-found.png'">
+            <div class="card">
+                <div class="card-header">
+                    Formulario de Articulo
+                </div>
+                <div class="card-body">
+                    <form [formGroup]="formArt" (ngSubmit)="guardarArticulo()" novalidate>
+                        <input formControlName="id_articulo" type="hidden" class="form-control">
+                        <div class="form-group">
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    <label for="exampleFormControlFile1">Seleccione una Imagen</label>
+                                    <input (change)="showImage($event)" formControlName="img" type="file" class="form-control-file">
+                                </div>
+                                <div class="col-sm-6">
+                                    <img style="height: 150px;" class="img-fluid" [src]=" this.imgPreview || 'assets/img/img-not-found.png'">
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="form-group">
-                        <select formControlName="categoria" class="form-control" id="exampleSelect1">
+                        <div class="form-group">
+                            <select formControlName="categoria" class="form-control" id="exampleSelect1">
                     <option value="0" selected disabled>Seleccione la Categoría</option>
                   <option [value]="categoria.id_categoria" *ngFor="let categoria of getCat">{{categoria.descripcion}}</option>
                 </select>
-                    </div>
-                    <div class="form-group">
-                        <input formControlName="cant_total" placeholder="¿Cuál es la cantidad total de artículos?" type="text" class="form-control">
-                    </div>
-                    <div class="form-group">
-                        <select formControlName="seccion" class="form-control" id="exampleSelect1">
+                        </div>
+                        <div class="form-group">
+                            <input formControlName="cant_total" placeholder="¿Cuál es la cantidad total de artículos?" type="text" class="form-control">
+                        </div>
+                        <div class="form-group">
+                            <select formControlName="seccion" class="form-control" id="exampleSelect1">
                   <option value="0" selected disabled>Seleccione la Sección</option>
                   <option [value]="seccion.id_seccion" *ngFor="let seccion of getSec">{{seccion.nombre_seccion}}</option>
                 </select>
-                    </div>
-                    <div class="form-group">
-                        <input formControlName="cant" placeholder="¿Cuántos artículos son para esta sección?" type="text" class="form-control">
-                    </div>
-                    <div class="form-group">
-                        <input formControlName="descripcion" placeholder="Añada un Descripción para el Artículo" type="text" class="form-control">
-                    </div>
-                    <div class="form-group">
-                        <input formControlName="estado" placeholder="¿En qué estado se encuentra?" type="text" class="form-control">
-                    </div>
-                    <div class="form-group">
-                        <input formControlName="valor" placeholder="¿Cuál es el valor estimativo del conjunto de Artículos?" type="text" class="form-control">
-                    </div>
-                    <div class="form-group">
-                        <input formControlName="origen" placeholder="¿Cuál es la procedencia de los Artículos?" type="text" class="form-control">
-                    </div>
-                    <div class="form-group">
-                        <input formControlName="fecha_alta" placeholder="¿Cuál es la Fecha de Alta?" type="text" class="form-control">
-                    </div>
+                        </div>
+                        <div class="form-group">
+                            <input formControlName="cant" placeholder="¿Cuántos artículos son para esta sección?" type="text" class="form-control">
+                        </div>
+                        <div class="form-group">
+                            <input formControlName="descripcion" placeholder="Añada un Descripción para el Artículo" type="text" class="form-control">
+                        </div>
+                        <div class="form-group">
+                            <input formControlName="estado" placeholder="¿En qué estado se encuentra?" type="text" class="form-control">
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label">Input addons</label>
+                            <div class="form-group">
+                                <div class="input-group mb-3">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text">$</span>
+                                    </div>
+                                    <input formControlName="valor" type="text" class="form-control" aria-label="Amount (to the nearest dollar)">
+                                    <div class="input-group-append">
+                                        <span class="input-group-text">.00</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <input formControlName="origen" placeholder="¿Cuál es la procedencia de los Artículos?" type="text" class="form-control">
+                        </div>
+                        <div class="form-group">
+                            <input formControlName="fecha_alta" placeholder="¿Cuál es la Fecha de Alta?" type="text" class="form-control">
+                        </div>
 
-                    <button [disabled]="formArt.invalid" type="submit" class="btn btn-outline-danger">Bye!</button>
-                </form>
+                        <button [disabled]="formArt.invalid" type="submit" class="btn btn-outline-danger">Bye!</button>
+                    </form>
+                </div>
             </div>
+
+
         </div>
-
-
+        <div class="col-sm-2"></div>
     </div>
-    <div class="col-sm-3"></div>
 </div>
-<div class="row">
-    <div class="col-sm-2"></div>
-    <div class="col-sm-8">
+<!--Guardar-->
+<div *ngIf="tabG">
+    <div class="row">
+        <div class="col-sm-2"></div>
+        <div class="col-sm-8">
 
-        <div style="text-align: center;">
-            <table class="table table-dark">
-                <thead>
-                    <tr>
-                        <th>Imagen</th>
-                        <th>Categoría</th>
-                        <th>Cantidad Total</th>
-                        <th>Cantidad en Sección</th>
-                        <th>Sección</th>
-                        <th>Descripción</th>
-                        <th>Estado</th>
-                        <th>Valor</th>
-                        <th>Origen</th>
-                        <th>Fecha de Alta</th>
-                        <th>Fecha de Baja</th>
-                        <th>Operaciones</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr *ngFor="let articulo of getArt">
-                        <td>
-                            <img [src]="articulo.img">
-                        </td>
-                        <td>
-                            {{articulo.categoria}}
-                        </td>
-                        <td>
-                            {{articulo.cant_total}}
-                        </td>
-                        <td>
-                            {{articulo.cant}}
-                        </td>
-                        <td>
-                            {{articulo.seccion}}
-                        </td>
-                        <td>
-                            {{articulo.descripcion}}
-                        </td>
-                        <td>
-                            {{articulo.estado}}
-                        </td>
-                        <td>
-                            {{articulo.valor}}
-                        </td>
-                        <td>
-                            {{articulo.origen}}
-                        </td>
-                        <td>
-                            {{articulo.fecha_alta}}
-                        </td>
-                        <td>
-                            {{articulo.fecha_baja}}
-                        </td>
-                        <td>
-                            <div class="btn-group">
-                                <button type="button" class="btn btn-outline-danger">
-                                    <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-trash" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                                        <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z"/>
-                                        <path fill-rule="evenodd" d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4L4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z"/>
+            <div class="card">
+                <div class="card-header">
+                    Formulario de Articulo
+                </div>
+                <div class="card-body">
+                    <form [formGroup]="formArt" (ngSubmit)="guardarArticulo()" novalidate>
+                        <input formControlName="id_articulo" type="hidden" class="form-control">
+                        <div class="form-group">
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    <label for="exampleFormControlFile1">Seleccione una Imagen</label>
+                                    <input (change)="showImage($event)" formControlName="img" type="file" class="form-control-file">
+                                </div>
+                                <div class="col-sm-6">
+                                    <img style="height: 150px;" class="img-fluid" [src]=" this.imgPreview || 'assets/img/img-not-found.png'">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <select formControlName="categoria" class="form-control" id="exampleSelect1">
+                    <option value="0" selected disabled>Seleccione la Categoría</option>
+                  <option [value]="categoria.id_categoria" *ngFor="let categoria of getCat">{{categoria.descripcion}}</option>
+                </select>
+                        </div>
+                        <div class="form-group">
+                            <input formControlName="cant_total" placeholder="¿Cuál es la cantidad total de artículos?" type="text" class="form-control">
+                        </div>
+                        <div class="form-group">
+                            <select formControlName="seccion" class="form-control" id="exampleSelect1">
+                  <option value="0" selected disabled>Seleccione la Sección</option>
+                  <option [value]="seccion.id_seccion" *ngFor="let seccion of getSec">{{seccion.nombre_seccion}}</option>
+                </select>
+                        </div>
+                        <div class="form-group">
+                            <input formControlName="descripcion" placeholder="Añada un Descripción para el Artículo" type="text" class="form-control">
+                        </div>
+                        <div class="form-group">
+                            <input formControlName="estado" placeholder="¿En qué estado se encuentra?" type="text" class="form-control">
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label">Valor Estimado</label>
+                            <div class="form-group">
+                                <div class="input-group mb-3">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text">$</span>
+                                    </div>
+                                    <input formControlName="valor" type="text" class="form-control" aria-label="Amount (to the nearest dollar)">
+                                    <div class="input-group-append">
+                                        <span class="input-group-text">.00</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <input formControlName="origen" placeholder="¿Cuál es la procedencia de los Artículos?" type="text" class="form-control">
+                        </div>
+                        <div class="form-group">
+                            <input formControlName="fecha_alta" placeholder="¿Cuál es la Fecha de Alta?" type="text" class="form-control">
+                        </div>
+
+                        <button [disabled]="formArt.invalid" type="submit" class="btn btn-outline-danger">Bye!</button>
+                    </form>
+                </div>
+            </div>
+
+
+        </div>
+        <div class="col-sm-2"></div>
+    </div>
+</div>
+<button type="button" class="btn btn-success" (click)="btnNuevoArt()">
+    <svg width="2em" height="2em" viewBox="0 0 16 16" class="bi bi-plus" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+        <path fill-rule="evenodd" d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z"/>
+      </svg>
+    Nuevo Articulo</button>
+
+<button type="button" class="btn btn-warning" (click)="btnModoEdicion()">
+    <svg width="2em" height="2em" viewBox="0 0 16 16" class="bi bi-plus" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+        <path fill-rule="evenodd" d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z"/>
+      </svg>
+    Modo Edición</button>
+
+<div style="text-align: center;">
+    <table class="table table-dark">
+        <thead>
+            <tr>
+                <th>Imagen</th>
+                <th>Categoría</th>
+                <th>Cantidad Total</th>
+                <th>Cantidad en Sección</th>
+                <th>Sección</th>
+                <th>Descripción</th>
+                <th>Estado</th>
+                <th>Valor</th>
+                <th>Origen</th>
+                <th>Fecha de Alta</th>
+                <th>Fecha de Baja</th>
+                <th *ngIf="op">Eliminar/Editar</th>
+                <!--
+                <th *ngIf="op">Mover</th>
+                -->
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let articulo of getArt">
+                <td>
+                    <img [src]="articulo.img">
+                </td>
+                <td>
+                    {{articulo.categoria}}
+                </td>
+                <td>
+                    {{articulo.cant_total}}
+                </td>
+                <td>
+                    {{articulo.cant}}
+                </td>
+                <td>
+                    {{articulo.seccion}}
+                </td>
+                <td>
+                    {{articulo.descripcion}}
+                </td>
+                <td>
+                    {{articulo.estado}}
+                </td>
+                <td>
+                    {{articulo.valor}}
+                </td>
+                <td>
+                    {{articulo.origen}}
+                </td>
+                <td>
+                    {{articulo.fecha_alta}}
+                </td>
+                <td>
+                    {{articulo.fecha_baja}}
+                </td>
+                <td *ngIf="op">
+                    <div class="btn-group">
+                        <button (click)="eliminarArticulo(articulo)" type="button" class="btn btn-outline-danger">
+                                    <svg width="1em " height="1em " viewBox="0 0 16 16 " class="bi bi-trash " fill="currentColor " xmlns="http://www.w3.org/2000/svg ">
+                                        <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z "/>
+                                        <path fill-rule="evenodd " d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4L4 4.059V13a1 1 0 0 0 1 1h6a1
+                            1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z "/>
                                   </svg>
                                 </button>
-                                <button (click)="editarArticulo(articulo)" type="button" class="btn btn-outline-success">
-                                    <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-pencil" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                                        <path fill-rule="evenodd" d="M12.146.146a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1 0 .708l-10 10a.5.5 0 0 1-.168.11l-5 2a.5.5 0 0 1-.65-.65l2-5a.5.5 0 0 1 .11-.168l10-10zM11.207 2.5L13.5 4.793 14.793 3.5 12.5 1.207 11.207 2.5zm1.586 3L10.5 3.207 4 9.707V10h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.293l6.5-6.5zm-9.761 5.175l-.106.106-1.528 3.821 3.821-1.528.106-.106A.5.5 0 0 1 5 12.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.468-.325z"/>
+                        <button (click)="editarArticulo(articulo)" type="button" class="btn btn-outline-success">
+                                    <svg width="1em " height="1em " viewBox="0 0 16 16 " class="bi bi-pencil " fill="currentColor " xmlns="http://www.w3.org/2000/svg ">
+                                        <path fill-rule="evenodd " d="M12.146.146a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1 0 .708l-10 10a.5.5 0 0 1-.168.11l-5 2a.5.5 0 0 1-.65-.65l2-5a.5.5 0 0 1 .11-.168l10-10zM11.207 2.5L13.5 4.793 14.793 3.5 12.5 1.207 11.207
+                            2.5zm1.586 3L10.5 3.207 4 9.707V10h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.293l6.5-6.5zm-9.761 5.175l-.106.106-1.528 3.821 3.821-1.528.106-.106A.5.5 0 0 1 5 12.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.468-.325z "/>
                                     </svg>
-                                </button>
-                            </div>
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
-
-    </div>
-    <div class="col-sm-2"></div>
+                        </button>
+                    </div>
+                </td>
+                <!--
+                <td *ngIf="op">
+                    <div class="btn-group">
+                        <button (click)="guardarMovimiento(articulo)" type="button" class="btn btn-outline-alert">
+                            <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-forward" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                                <path fill-rule="evenodd" d="M9.502 5.513a.144.144 0 0 0-.202.134V6.65a.5.5 0 0 1-.5.5H2.5v2.9h6.3a.5.5 0 0 1 .5.5v1.003c0 .108.11.176.202.134l3.984-2.933a.51.51 0 0 1 .042-.028.147.147 0 0 0 0-.252.51.51 0 0 1-.042-.028L9.502 5.513zM8.3 5.647a1.144 1.144 0 0 1 1.767-.96l3.994 2.94a1.147 1.147 0 0 1 0 1.946l-3.994 2.94a1.144 1.144 0 0 1-1.767-.96v-.503H2a.5.5 0 0 1-.5-.5v-3.9a.5.5 0 0 1 .5-.5h6.3v-.503z"/>
+                              </svg>
+                        </button>
+                    </div>
+                </td>
+                -->
+            </tr>
+        </tbody>
+    </table>
 </div>

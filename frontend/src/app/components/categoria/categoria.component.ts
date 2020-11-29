@@ -10,8 +10,8 @@ import { ICat } from 'src/app/models/categoria';
 export class CategoriaComponent implements OnInit {
 
   getCat = [];
-   formCat:FormGroup;
-
+  formCat:FormGroup;
+// formgrup nos permite construir el formulario/ crea una instancia de caService 
   constructor(private caService:CategoriaService,private fb: FormBuilder) {
 
     this.formCat = this.fb.group({

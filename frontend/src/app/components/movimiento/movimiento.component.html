@@ -1,0 +1,20 @@
+<div style="text-align: center;">
+    <table class="table table-dark">
+        <thead>
+            <tr>
+                <th>Id Movimiento</th>
+                <th>Id Articulo</th>
+                <th>Sección Destino</th>
+                <th>Fecha</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let mov of getMov">
+                <td>{{mov.id_movimiento}}</td>
+                <td>{{mov.id_articulo}}</td>
+                <td>{{mov.destino_seccion}}</td>
+                <td>{{mov.fecha_hora}}</td>
+            </tr>
+        </tbody>
+    </table>
+</div>

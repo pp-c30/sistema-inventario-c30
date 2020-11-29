@@ -12,6 +12,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.ArticuloController = void 0;
 const database_1 = require("../database");
 const cloudinary_1 = __importDefault(require("cloudinary"));
 const fs_extra_1 = __importDefault(require("fs-extra"));
@@ -62,8 +63,10 @@ class ArticuloController {
     }
     eliminarArticulo(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
-            const db = yield database_1.conexion();
             let id_articulo = req.params.id_articulo;
+            let public_id = req.params.public_id;
+            yield cloudinary_1.default.v2.uploader.destroy(public_id);
+            const db = yield database_1.conexion();
             yield db.query("delete from articulo where id_articulo = ?", [id_articulo]);
             return res.json('El articulo se eliminó con exito');
         });

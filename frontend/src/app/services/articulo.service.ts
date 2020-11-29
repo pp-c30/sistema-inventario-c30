@@ -19,7 +19,7 @@ export class ArticuloService {
     const fd = new FormData();
     
     fd.append('img',file);
-    fd.append('cant',String(unArt.cant));
+    fd.append('cant',String(unArt.cant_total));
     fd.append('cant_total',String(unArt.cant_total));
     fd.append('fecha_alta',String(unArt.fecha_alta));
     fd.append('descripcion',unArt.descripcion);
@@ -52,6 +52,15 @@ export class ArticuloService {
 
     return this.http.put('http://localhost:3000/articulo/'+id_articulo,fd);
 
+  }
+
+  deleteArticulo(articulo:IArt){
+
+    let id_articulo = articulo.id_articulo;
+
+    let public_id = articulo.public_id;
+
+    return this.http.delete('http://localhost:3000/articulo/'+id_articulo+'/'+public_id);
   }
 
 }

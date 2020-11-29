@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup,Form } from "@angular/forms";
+import { FormBuilder, FormGroup,Form,Validators } from "@angular/forms";
 import { ISec } from 'src/app/models/seccion';
 import { SeccionService } from "../../services/seccion.service";
 @Component({
@@ -17,7 +17,7 @@ export class SeccionComponent implements OnInit {
 
     this.formSec = this.fb.group({
       id_seccion:[null],
-      nombre_seccion:['']
+      nombre_seccion:['', [Validators.required,Validators.minLength(3)]]
 
     });
   }

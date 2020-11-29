@@ -61,9 +61,13 @@ export class ArticuloController {
     
     public async eliminarArticulo(req:Request, res:Response){
 
-        const db = await conexion();
-
         let id_articulo = req.params.id_articulo;
+
+        let public_id = req.params.public_id;
+
+        await cloudinary.v2.uploader.destroy(public_id);
+        
+        const db = await conexion();
         
         await db.query("delete from articulo where id_articulo = ?", [id_articulo]);
 
