@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CategoriaService } from "../../services/categoria.service";
 import { SeccionService } from "../../services/seccion.service";
+/*import { MovimientoService } from "../../services/movimiento.service";*/
 import { ArticuloService } from "../../services/articulo.service";
 import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 import { IArt } from 'src/app/models/articulo';
@@ -24,7 +25,7 @@ export class ArticuloComponent implements OnInit {
   file: File;
   imgPreview: string | ArrayBuffer;
 
-  constructor(private spinner:NgxSpinnerService, private caService:CategoriaService, private seService:SeccionService, private artService:ArticuloService, private fb: FormBuilder) { 
+  constructor(/*private movService:MovimientoService, */private spinner:NgxSpinnerService, private caService:CategoriaService, private seService:SeccionService, private artService:ArticuloService, private fb: FormBuilder) { 
 
     this.formArt = this.fb.group({
 
@@ -113,7 +114,20 @@ export class ArticuloComponent implements OnInit {
 
     
   }
-  
+/*
+  guardarMovimiento(articulo:IArt){
+
+    this.movService.saveMovimiento(this.formArt.value).subscribe(
+
+      resultado => {
+
+        console.log(resultado);
+        this.formArt.reset();
+      },
+      error => console.log(error)
+    )
+  }
+  */
   editarArticulo(articulo:IArt){
 
     this.formArt.setValue({
