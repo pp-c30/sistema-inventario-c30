@@ -12,7 +12,7 @@ import { FooterComponent } from './components/footer/footer.component';
 import { ArticuloComponent } from './components/articulo/articulo.component';
 import { CategoriaComponent } from './components/categoria/categoria.component';
 import { SeccionComponent } from './components/seccion/seccion.component';
-import { ReactiveFormsModule,FormsModule } from '@angular/forms';
+import { ReactiveFormsModule,FormsModule} from '@angular/forms';
 import { NgxSpinnerModule } from 'ngx-spinner';
 import { MovimientoComponent } from './components/movimiento/movimiento.component';
 

@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { CategoriaService } from "../../services/categoria.service";
-import { FormBuilder, FormGroup } from "@angular/forms";
+import { FormBuilder, FormGroup,Form, Validators } from "@angular/forms";
 import { ICat } from 'src/app/models/categoria';
 @Component({
   selector: 'app-categoria',
@@ -11,14 +11,14 @@ export class CategoriaComponent implements OnInit {
 
   getCat = [];
   formCat:FormGroup;
-
+// formgrup nos permite construir el formulario/ crea una instancia de caService 
   constructor(private caService:CategoriaService,private fb: FormBuilder) {
 
     this.formCat = this.fb.group({
 
       id_categoria:[null],
 
-      descripcion:['']
+      descripcion:['', [Validators.required,Validators.minLength(3)]]
 
     });
    }

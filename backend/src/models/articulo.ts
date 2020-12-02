@@ -1,4 +1,5 @@
-export interface IArt {
+//  el modeles se encarga de indicar en de que tipo y en que orden son ingresados los datos
+ export interface IArt {
 
     id_articulo?:number;
     categoria:number;
@@ -14,19 +15,3 @@ export interface IArt {
     origen:string;
     public_id:string;
 }
-
-/* 
-{
-  "categoria": "2",
-	"cant_total": "20",
-	"cant": "10",
-	"fecha_alta": "2020-09-25",
-	"fecha_baja": "",
-	"descripcion": "esta es una descripcion",
-	"seccion": "2",
-	"estado": "bueno",
-	"valor": "17999.99",
-	"img": "puto el que lee",
-	"origen": "tu vieja"
-}
-*/

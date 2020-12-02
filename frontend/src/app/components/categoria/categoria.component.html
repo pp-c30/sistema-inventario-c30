@@ -37,12 +37,19 @@
 <div class="card">
     <div class="card-header">Formulario de categoria </div>
     <div class="card-body">
-        <form [formGroup]="formCat" (ngSubmit)="guardarCategoria()">
+        <form [formGroup]="formCat" (ngSubmit)="guardarCategoria()" novalidate> 
             <input formControlName="id_categoria" type="hidden">
             <div class="form-group">
-                <input formControlName="descripcion" placeholder="¿Cual es el nombre de la categoria?" type="text" class="form-control">
+                <!-- [ngClass]permite agregar clases dinamicamente -->
+                <!-- el signo ? ayuda a realizar la lectura y posteriormente agregar la clase sin delay o retrasos, basicamente asegura la lectura -->
+                <input [ngClass]="{'is-invalid':(formCat.get('descripcion')?.touched || formCat.get('descripcion')?.dirty) && formCat.get('descripcion')?.invalid}" formControlName="descripcion" placeholder="¿Cual es el nombre de la categoria?" type="text" class="form-control">
+               <!-- permite agregar letras en rojo a la hora de validar -->
+                <div class="invalid-feedback">
+                    <span *ngIf="formCat.get('descripcion') .hasError('required')">Campo requerido e </span>
+                    <span *ngIf="!formCat.get('descripcion') .hasError('minLenght')">Ingrese minimo 3 caracteres</span>
+                </div>
             </div>
-            <button class="btn btn-success">Guardar categoria</button>
+            <button [disabled]="formCat.invalid" class="btn btn-success">Guardar categoria</button>
         </form>
     </div>
 </div>
