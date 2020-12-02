@@ -19,8 +19,7 @@ interface HTMLInputEvent{
 export class ArticuloComponent implements OnInit {
 
   show = true;
-  tabG = false;
-  tabA = false;
+  display = 'display:none';
   op = false;
 
   getCat = [];
@@ -58,17 +57,10 @@ export class ArticuloComponent implements OnInit {
 
   btnNuevoArt(){
 
-    this.tabG = !this.tabG;
-    this.tabA = false;
-    this.op = false;
-    this.formArt.reset();
-    this.imgPreview = '';
   }
 
   btnModoEdicion(){
 
-    this.tabA = false;
-    this.tabG = false;
     this.op = !this.op;
   }
 
@@ -151,18 +143,18 @@ export class ArticuloComponent implements OnInit {
   */
   editarArticulo(articulo:IArt){
 
-    this.tabA = true;
+    this.display = 'display:block';
 
     this.formArt.setValue({
 
       id_articulo:articulo.id_articulo,
-      categoria:articulo.categoria,
-      seccion:articulo.seccion,
+      categoria:articulo.id_categoria,
+      seccion:articulo.id_seccion,
       cant:articulo.cant,
       cant_total:articulo.cant_total,
       descripcion:articulo.descripcion,
       estado:articulo.estado,
-      fecha_alta:articulo.fecha_alta,
+      fecha_alta:{year:Number(articulo.year),month:Number(articulo.month),day:Number(articulo.day)},
       valor:articulo.valor,
       origen:articulo.origen,
       fecha_baja:articulo.fecha_baja,

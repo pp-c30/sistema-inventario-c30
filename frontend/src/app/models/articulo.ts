@@ -13,4 +13,9 @@ export interface IArt {
     img?:string;
     origen:string;
     public_id:string;
+    day?:number;
+    month?:number;
+    year?:number;
+    id_categoria?:number;
+    id_seccion?:number;
 }
