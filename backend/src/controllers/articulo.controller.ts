@@ -15,7 +15,7 @@ export class ArticuloController {
 
         const db = await conexion();
         
-        let mov = await db.query('select * from articulo');
+        let mov = await db.query('select *,DATE_FORMAT(fecha_alta, "%d/%m/%Y") as fecha_alta,(select descripcion from categoria where id_categoria = a.categoria) as categoria,(select nombre_seccion from seccion where id_seccion = a.seccion) as seccion from articulo a');
         
         return res.json(mov);
     }
