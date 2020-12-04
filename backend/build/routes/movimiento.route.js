@@ -4,7 +4,7 @@ const express_1 = require("express");
 const movimiento_controller_1 = require("../controllers/movimiento.controller");
 let movimientoController = new movimiento_controller_1.MovimientoController();
 const enrutadorMovimiento = express_1.Router();
-enrutadorMovimiento.route('/movimiento').get(movimientoController.listarMovimiento);
+enrutadorMovimiento.route('/movimiento').get(/*validarToken, */ movimientoController.listarMovimiento);
 enrutadorMovimiento.route('/movimiento').post(movimientoController.guardarMovimiento);
 enrutadorMovimiento.route('/movimiento/:id_movimiento').delete(movimientoController.eliminarMovimiento);
 enrutadorMovimiento.route('/movimiento/:id_movimiento').put(movimientoController.actualizarMovimiento);

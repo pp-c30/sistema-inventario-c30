@@ -1,13 +1,14 @@
 import { Router } from "express";
 import {ArticuloController} from "../controllers/articulo.controller"
 import multer from "../libs/multer";
+import { validarToken } from "../libs/verificarToken";
 
 let articuloController = new ArticuloController();
 
 const enrutadorArticulo = Router();
 
 
-enrutadorArticulo.route('/articulo').get(articuloController.listarArticulo);
+enrutadorArticulo.route('/articulo').get(/*validarToken, */articuloController.listarArticulo);
 
 enrutadorArticulo.route('/articulo').post(multer.single('img'),articuloController.guardarArticulo);
 

@@ -14,6 +14,7 @@ const movimiento_route_1 = __importDefault(require("./routes/movimiento.route"))
 const articulo_route_1 = __importDefault(require("./routes/articulo.route"));
 const categoria_route_1 = __importDefault(require("./routes/categoria.route"));
 const seccion_route_1 = __importDefault(require("./routes/seccion.route"));
+const autenticacion_route_1 = __importDefault(require("./routes/autenticacion.route"));
 const path_1 = __importDefault(require("path"));
 // clase donde estan creados los atributos, metodos y donde seran ejecutados
 class Server {
@@ -41,6 +42,7 @@ class Server {
         this.app.use(articulo_route_1.default);
         this.app.use(categoria_route_1.default);
         this.app.use(seccion_route_1.default);
+        this.app.use(autenticacion_route_1.default);
         this.app.use('/upload', express_1.default.static(path_1.default.resolve('uploads')));
     }
     middleware() {

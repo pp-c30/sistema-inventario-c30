@@ -8,6 +8,7 @@ import enrutadorMovimiento from "./routes/movimiento.route";
 import enrutadorArticulo from "./routes/articulo.route";
 import enrutadorCategoria from "./routes/categoria.route";
 import enrutadorSeccion from "./routes/seccion.route";
+import enrrutadorAut from "./routes/autenticacion.route";
 import path from "path";
 
 // clase donde estan creados los atributos, metodos y donde seran ejecutados
@@ -39,6 +40,7 @@ export class Server {
         this.app.use(enrutadorArticulo);
         this.app.use(enrutadorCategoria);
         this.app.use(enrutadorSeccion);
+        this.app.use(enrrutadorAut);
         this.app.use('/upload',express.static(path.resolve('uploads')));
     }
 

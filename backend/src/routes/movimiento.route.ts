@@ -1,12 +1,13 @@
 import { Router } from "express";
 import {MovimientoController} from "../controllers/movimiento.controller"
+import { validarToken } from "../libs/verificarToken";
 
 let movimientoController = new MovimientoController();
 
 const enrutadorMovimiento = Router();
 
 
-enrutadorMovimiento.route('/movimiento').get(movimientoController.listarMovimiento);
+enrutadorMovimiento.route('/movimiento').get(/*validarToken, */movimientoController.listarMovimiento);
 
 enrutadorMovimiento.route('/movimiento').post(movimientoController.guardarMovimiento);
 

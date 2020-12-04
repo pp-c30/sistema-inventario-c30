@@ -2,6 +2,8 @@
 import { Router } from "express";
 // importamos el metodo "CategoriaController" desde el archivo "categorias.controllers"
 import {CategoriaController} from "../controllers/categoria.controller"
+//importamos el metodo de que valida los tokens
+import { validarToken } from "../libs/verificarToken";
 //instacia que permite tener todas las funciones de la clase "categoriaController"
 let categoriaController = new CategoriaController();
 
@@ -9,7 +11,7 @@ let categoriaController = new CategoriaController();
 const enrutadorCategoria = Router();
 
 // creamos una ruta que realiza la peticion listar
-enrutadorCategoria.route('/categoria').get(categoriaController.listarCategoria);
+enrutadorCategoria.route('/categoria').get(/*validarToken, */categoriaController.listarCategoria);
 // creamos una ruta que guarda los datos en la db
 enrutadorCategoria.route('/categoria').post(categoriaController.guardarCategoria);
 // creamos una ruta que elimina datos de la db
