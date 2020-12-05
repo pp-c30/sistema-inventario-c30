@@ -1,8 +1,8 @@
 <!--Guardar-->
 
-<button (click)="btnNuevoArt" type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+<button (click)="btnNuevoArt()" type="button" class="btn btn-success" data-toggle="modal" data-target="#exampleModal">
     Nuevo Artículo
-  </button>
+</button>
 
 <!-- Modal -->
 <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -88,29 +88,21 @@
     </div>
 </div>
 
-<button type="button" class="btn btn-success" (click)="btnNuevoArt()">
-    <svg width="2em" height="2em" viewBox="0 0 16 16" class="bi bi-plus" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-        <path fill-rule="evenodd" d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z"/>
-      </svg>
-    Nuevo Articulo</button>
-
 <button type="button" class="btn btn-warning" (click)="btnModoEdicion()">
-    <svg width="2em" height="2em" viewBox="0 0 16 16" class="bi bi-plus" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-        <path fill-rule="evenodd" d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z"/>
-      </svg>
-    Modo Edición</button>
+    Modo Edición
+</button>
 
 <div style="text-align: center;">
-        
-    <div class="row"> 
+
+    <div class="row">
         <div class="col-sm-4">
             <div class="form-group">
-                <input [(ngModel)]="buscarArt" type="text" class="form-control"> 
+                <input [(ngModel)]="buscarArt" type="text" class="form-control">
             </div>
         </div>
     </div>
     <table class="table table-dark">
-         
+
         <thead>
             <tr>
                 <th>Imagen</th>

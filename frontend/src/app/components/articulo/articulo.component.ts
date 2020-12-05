@@ -60,6 +60,11 @@ export class ArticuloComponent implements OnInit {
 
   btnNuevoArt(){
 
+    this.display = 'display:none';
+    this.imgPreview = '';
+    this.formArt.reset();
+    this.formArt.get('categoria').setValue(0);
+    this.formArt.get('seccion').setValue(0);
   }
 
   btnModoEdicion(){
