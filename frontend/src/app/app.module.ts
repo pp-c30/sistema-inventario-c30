@@ -14,7 +14,7 @@ import { SeccionComponent } from './components/seccion/seccion.component';
 import { ReactiveFormsModule,FormsModule} from '@angular/forms';
 import { NgxSpinnerModule } from 'ngx-spinner';
 import { MovimientoComponent } from './components/movimiento/movimiento.component';
-
+import { Ng2SearchPipeModule } from "ng2-search-filter";
 @NgModule({
   declarations: [
     AppComponent,
@@ -33,7 +33,8 @@ import { MovimientoComponent } from './components/movimiento/movimiento.componen
     HttpClientModule,
     ReactiveFormsModule,
     FormsModule,
-    NgxSpinnerModule
+    NgxSpinnerModule,
+    Ng2SearchPipeModule
 
   ],
   providers: [],

@@ -30,6 +30,8 @@ export class ArticuloComponent implements OnInit {
   file: File;
   imgPreview: string | ArrayBuffer;
 
+  buscarArt:any;
+
   constructor(/*private movService:MovimientoService, */private spinner:NgxSpinnerService, private caService:CategoriaService, private seService:SeccionService, private artService:ArticuloService, private fb: FormBuilder) { 
 
     this.formArt = this.fb.group({
@@ -48,6 +50,7 @@ export class ArticuloComponent implements OnInit {
       origen:['',[Validators.required]]
     })
   }
+  // esto se inicia cuando arranca el componente
   ngOnInit(): void {
     this.listarCategoria();
     this.listarSeccion();
