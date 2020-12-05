@@ -41,7 +41,7 @@ export class ArticuloComponent implements OnInit {
       fecha_baja:[''],
       descripcion:[''],
       seccion:[0,[Validators.required]],
-      estado:['',[Validators.required]],
+      estado:[''],
       valor:['',[Validators.required]],
       img:[''],
       origen:['',[Validators.required]]
