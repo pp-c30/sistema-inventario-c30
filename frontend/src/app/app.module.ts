@@ -15,6 +15,7 @@ import { ReactiveFormsModule,FormsModule} from '@angular/forms';
 import { NgxSpinnerModule } from 'ngx-spinner';
 import { MovimientoComponent } from './components/movimiento/movimiento.component';
 import { Ng2SearchPipeModule } from "ng2-search-filter";
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 @NgModule({
   declarations: [
     AppComponent,
@@ -34,8 +35,8 @@ import { Ng2SearchPipeModule } from "ng2-search-filter";
     ReactiveFormsModule,
     FormsModule,
     NgxSpinnerModule,
-    Ng2SearchPipeModule
-
+    Ng2SearchPipeModule,
+    NgbModule
   ],
   providers: [],
   bootstrap: [AppComponent]
