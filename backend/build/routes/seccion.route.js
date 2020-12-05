@@ -4,7 +4,7 @@ const express_1 = require("express");
 const seccion_controller_1 = require("../controllers/seccion.controller");
 let seccionController = new seccion_controller_1.SeccionController();
 const enrutadorSeccion = express_1.Router();
-enrutadorSeccion.route('/seccion').get(seccionController.listarSeccion);
+enrutadorSeccion.route('/seccion').get(/*validarToken, */ seccionController.listarSeccion);
 enrutadorSeccion.route('/seccion').post(seccionController.guardarSeccion);
 enrutadorSeccion.route('/seccion/:id_seccion').delete(seccionController.eliminarSeccion);
 enrutadorSeccion.route('/seccion/:id_seccion').put(seccionController.actualizarSeccion);

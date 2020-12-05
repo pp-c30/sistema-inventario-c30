@@ -1,12 +1,13 @@
 import { Router } from "express";
 import {SeccionController} from "../controllers/seccion.controller"
+import { validarToken } from "../libs/verificarToken";
 
 let seccionController = new SeccionController();
 
 const enrutadorSeccion = Router();
 
 
-enrutadorSeccion.route('/seccion').get(seccionController.listarSeccion);
+enrutadorSeccion.route('/seccion').get(/*validarToken, */seccionController.listarSeccion);
 
 enrutadorSeccion.route('/seccion').post(seccionController.guardarSeccion);
 

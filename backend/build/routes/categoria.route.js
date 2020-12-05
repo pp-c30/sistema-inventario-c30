@@ -9,7 +9,7 @@ let categoriaController = new categoria_controller_1.CategoriaController();
 // creamos una variable constante llamada "enrutadorCategoria", se guardan las funciones del Router 
 const enrutadorCategoria = express_1.Router();
 // creamos una ruta que realiza la peticion listar
-enrutadorCategoria.route('/categoria').get(categoriaController.listarCategoria);
+enrutadorCategoria.route('/categoria').get(/*validarToken, */ categoriaController.listarCategoria);
 // creamos una ruta que guarda los datos en la db
 enrutadorCategoria.route('/categoria').post(categoriaController.guardarCategoria);
 // creamos una ruta que elimina datos de la db
