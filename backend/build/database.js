@@ -9,6 +9,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.conexion = void 0;
 // importamos el metodo "createPool" que nos permite conectarnos a la db desde "promise-mysql"
 const promise_mysql_1 = require("promise-mysql");
 //funcion que se encarga de la conexion a la DB 
