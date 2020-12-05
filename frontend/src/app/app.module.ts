@@ -4,7 +4,6 @@ import { HttpClientModule } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 
-import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { BodyComponent } from './components/body/body.component';
 import { HeaderComponent } from './components/header/header.component';
@@ -15,7 +14,8 @@ import { SeccionComponent } from './components/seccion/seccion.component';
 import { ReactiveFormsModule,FormsModule} from '@angular/forms';
 import { NgxSpinnerModule } from 'ngx-spinner';
 import { MovimientoComponent } from './components/movimiento/movimiento.component';
-
+import { Ng2SearchPipeModule } from "ng2-search-filter";
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 @NgModule({
   declarations: [
     AppComponent,
@@ -35,8 +35,8 @@ import { MovimientoComponent } from './components/movimiento/movimiento.componen
     ReactiveFormsModule,
     FormsModule,
     NgxSpinnerModule,
+    Ng2SearchPipeModule,
     NgbModule
-
   ],
   providers: [],
   bootstrap: [AppComponent]
