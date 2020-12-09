@@ -38,15 +38,15 @@ export class ArticuloComponent implements OnInit {
       id_articulo:[''],
       categoria:[0,[Validators.required]],
       cant_total:['',[Validators.required]],
-      cant:[''],
+      cant:['', [Validators.required,Validators.minLength(1)]],
       fecha_alta:['',[Validators.required]],
       fecha_baja:[''],
-      descripcion:[''],
+      descripcion:['', [Validators.required,Validators.minLength(3)]],
       seccion:[0,[Validators.required]],
       estado:[''],
-      valor:['',[Validators.required]],
+      valor:['',[Validators.required,Validators.minLength(2)]],
       img:[''],
-      origen:['',[Validators.required]]
+      origen:['',[Validators.required,Validators.minLength(3)]]
     })
   }
   // esto se inicia cuando arranca el componente
