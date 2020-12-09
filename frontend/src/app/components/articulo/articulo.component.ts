@@ -21,14 +21,13 @@ export class ArticuloComponent implements OnInit {
   show = true;
   display = 'display:none';
   op = false;
-
+  baja = false;
   getCat = [];
   getSec = [];
   getArt = [];
   formArt: FormGroup; 
   file: File;
   imgPreview: string | ArrayBuffer;
-
   buscarArt:any;
 
   constructor(/*private movService:MovimientoService, */private spinner:NgxSpinnerService, private caService:CategoriaService, private seService:SeccionService, private artService:ArticuloService, private fb: FormBuilder) { 
@@ -70,6 +69,11 @@ export class ArticuloComponent implements OnInit {
   btnModoEdicion(){
 
     this.op = !this.op;
+  }
+
+  btnDadoBaja(){
+
+    this.baja = !this.baja;
   }
 
   listarCategoria(){

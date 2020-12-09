@@ -1,9 +1,3 @@
-<!--Guardar-->
-
-<button (click)="btnNuevoArt()" type="button" class="btn btn-success" data-toggle="modal" data-target="#exampleModal">
-    Nuevo Artículo
-</button>
-
 <!-- Modal -->
 <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog">
@@ -64,7 +58,7 @@
                                 <div class="input-group-prepend">
                                     <span class="input-group-text">$</span>
                                 </div>
-                                <input  [ngClass]="{'is-invalid':(formArt.get('valor')?.touched || formArt.get('valor')?.dirty) && formArt.get('valor')?.invalid}" formControlName="valor" type="text" class="form-control" aria-label="Amount (to the nearest dollar)">
+                                <input [ngClass]="{'is-invalid':(formArt.get('valor')?.touched || formArt.get('valor')?.dirty) && formArt.get('valor')?.invalid}" formControlName="valor" type="text" class="form-control" aria-label="Amount (to the nearest dollar)">
                                 <div class="invalid-feedback">
                                     <span *ngIf="formArt.get('valor') .hasError('required')">Campo requerido e </span>
                                     <span *ngIf="!formArt.get('valor') .hasError('minLenght')">Ingrese minimo 2 caracteres</span>
@@ -76,7 +70,7 @@
                         </div>
                     </div>
                     <div class="form-group">
-                        <input  [ngClass]="{'is-invalid':(formArt.get('origen')?.touched || formArt.get('origen')?.dirty) && formArt.get('origen')?.invalid}" formControlName="origen" placeholder="¿Cuál es la procedencia de los Artículos?" type="text" class="form-control">
+                        <input [ngClass]="{'is-invalid':(formArt.get('origen')?.touched || formArt.get('origen')?.dirty) && formArt.get('origen')?.invalid}" formControlName="origen" placeholder="¿Cuál es la procedencia de los Artículos?" type="text" class="form-control">
                         <div class="invalid-feedback">
                             <span *ngIf="formArt.get('origen') .hasError('required')">Campo requerido e </span>
                             <span *ngIf="!formArt.get('origen') .hasError('minLenght')">Ingrese minimo 3 caracteres</span>
@@ -104,8 +98,16 @@
     </div>
 </div>
 
+<button (click)="btnNuevoArt()" type="button" class="btn btn-success" data-toggle="modal" data-target="#exampleModal">
+    Nuevo Artículo
+</button>
+
 <button type="button" class="btn btn-warning" (click)="btnModoEdicion()">
     Modo Edición
+</button>
+
+<button type="button" class="btn btn-secondary" (click)="btnDadoBaja()">
+    Dados de Baja
 </button>
 
 <div style="text-align: center;">
@@ -127,11 +129,10 @@
                 <th>Cantidad en Sección</th>
                 <th>Sección</th>
                 <th>Descripción</th>
-                <th>Estado</th>
                 <th>Valor</th>
                 <th>Origen</th>
                 <th>Fecha de Alta</th>
-                <th>Fecha de Baja</th>
+                <th *ngIf='baja'>Fecha de Baja</th>
                 <th *ngIf="op">Eliminar/Editar</th>
                 <!--
                 <th *ngIf="op">Mover</th>
@@ -159,9 +160,6 @@
                     {{articulo.descripcion}}
                 </td>
                 <td>
-                    {{articulo.estado}}
-                </td>
-                <td>
                     {{articulo.valor}}
                 </td>
                 <td>
@@ -170,7 +168,7 @@
                 <td>
                     {{articulo.fecha_alta}}
                 </td>
-                <td>
+                <td *ngIf='baja'>
                     {{articulo.fecha_baja}}
                 </td>
                 <td *ngIf="op">
