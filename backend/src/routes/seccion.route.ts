@@ -7,7 +7,7 @@ let seccionController = new SeccionController();
 const enrutadorSeccion = Router();
 
 
-enrutadorSeccion.route('/seccion').get(/*validarToken, */seccionController.listarSeccion);
+enrutadorSeccion.route('/seccion').get(validarToken, seccionController.listarSeccion);
 
 enrutadorSeccion.route('/seccion').post(seccionController.guardarSeccion);
 

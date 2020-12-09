@@ -30,14 +30,14 @@ class AutenticacionController {
             };
             const db = yield database_1.conexion();
             const resultado = yield db.query('insert into usuario set ?', [unUsuario]);
-            const token = jsonwebtoken_1.default.sign({ _id: resultado.insertId }, process.env.TOKEN_SECRET || 'Puto_el_que_lee');
+            const token = jsonwebtoken_1.default.sign({ _id: resultado.insertId }, process.env.TOKEN_SECRET || 'fdsagdfg654');
             res.json(token);
         });
     }
     ingresar(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
             const db = yield database_1.conexion();
-            const usuario = yield db.query('selecto * from usuario where username = ?', [req.body.username]);
+            const usuario = yield db.query('select * from usuario where username = ?', [req.body.username]);
             if (!usuario[0]) {
                 res.json('Usuario o contraseña incorrecta');
             }
@@ -47,10 +47,10 @@ class AutenticacionController {
                     res.json('Contraseña incorrecta');
                 }
                 else {
-                    const token = jsonwebtoken_1.default.sign({ _id: usuario[0].id_usuario }, process.env.TOKEN_SECRET || 'Puto_el_que_lee', {
+                    const token = jsonwebtoken_1.default.sign({ _id: usuario[0].id_usuario }, process.env.TOKEN_SECRET || 'fdsagdfg654', {
                         expiresIn: 60 * 60 * 24
                     });
-                    res.header('auth-token', token).json(usuario[0]);
+                    res.json(token);
                 }
             }
         });

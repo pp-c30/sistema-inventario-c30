@@ -7,7 +7,7 @@ let movimientoController = new MovimientoController();
 const enrutadorMovimiento = Router();
 
 
-enrutadorMovimiento.route('/movimiento').get(/*validarToken, */movimientoController.listarMovimiento);
+enrutadorMovimiento.route('/movimiento').get(validarToken, movimientoController.listarMovimiento);
 
 enrutadorMovimiento.route('/movimiento').post(movimientoController.guardarMovimiento);
 

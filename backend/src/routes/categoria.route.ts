@@ -11,7 +11,7 @@ let categoriaController = new CategoriaController();
 const enrutadorCategoria = Router();
 
 // creamos una ruta que realiza la peticion listar
-enrutadorCategoria.route('/categoria').get(/*validarToken, */categoriaController.listarCategoria);
+enrutadorCategoria.route('/categoria').get(validarToken, categoriaController.listarCategoria);
 // creamos una ruta que guarda los datos en la db
 enrutadorCategoria.route('/categoria').post(categoriaController.guardarCategoria);
 // creamos una ruta que elimina datos de la db

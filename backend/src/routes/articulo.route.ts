@@ -8,7 +8,7 @@ let articuloController = new ArticuloController();
 const enrutadorArticulo = Router();
 
 
-enrutadorArticulo.route('/articulo').get(/*validarToken, */articuloController.listarArticulo);
+enrutadorArticulo.route('/articulo').get(validarToken, articuloController.listarArticulo);
 
 enrutadorArticulo.route('/articulo').post(multer.single('img'),articuloController.guardarArticulo);
 

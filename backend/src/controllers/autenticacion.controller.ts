@@ -25,7 +25,7 @@ export class AutenticacionController {
 
         const resultado = await db.query('insert into usuario set ?',[unUsuario]);
 
-        const token:string = jwt.sign({_id:resultado.insertId},process.env.TOKEN_SECRET || 'Puto_el_que_lee');
+        const token:string = jwt.sign({_id:resultado.insertId},process.env.TOKEN_SECRET || 'fdsagdfg654');
 
         res.json(token);
     }
@@ -34,7 +34,7 @@ export class AutenticacionController {
 
         const db = await conexion();
 
-        const usuario = await db.query('selecto * from usuario where username = ?', [req.body.username])
+        const usuario = await db.query('select * from usuario where username = ?', [req.body.username])
 
         if (!usuario[0]) {
             
@@ -48,11 +48,11 @@ export class AutenticacionController {
                 res.json('Contraseña incorrecta');
             }else{
 
-                const token:string = jwt.sign({_id:usuario[0].id_usuario},process.env.TOKEN_SECRET || 'Puto_el_que_lee',{
+                const token:string = jwt.sign({_id:usuario[0].id_usuario},process.env.TOKEN_SECRET || 'fdsagdfg654',{
                     expiresIn:60*60*24
                 });
 
-                res.header('auth-token',token).json(usuario[0]);
+                res.json(token);
             }
         }
     }

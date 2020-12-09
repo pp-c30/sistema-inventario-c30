@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { AutenticacionService } from "../../services/autenticacion.service";
 
 @Component({
   selector: 'app-body',
@@ -7,7 +8,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class BodyComponent implements OnInit {
 
-  constructor() { }
+  constructor(public autService:AutenticacionService) { }
 
   ngOnInit(): void {
   }
