@@ -24,7 +24,7 @@ export class ArticuloService {
     fd.append('fecha_alta',String(unArt.fecha_alta));
     fd.append('descripcion',unArt.descripcion);
     fd.append('seccion',String(unArt.seccion));
-    fd.append('estado',String(unArt.estado));
+    fd.append('estado','1');
     fd.append('valor',unArt.valor);
     fd.append('origen',unArt.origen);
     fd.append('categoria',String(unArt.categoria));

@@ -37,7 +37,7 @@ export class ArticuloComponent implements OnInit {
       id_articulo:[''],
       categoria:[0,[Validators.required]],
       cant_total:['',[Validators.required]],
-      cant:['', [Validators.required,Validators.minLength(1)]],
+      cant:[''],
       fecha_alta:['',[Validators.required]],
       fecha_baja:[''],
       descripcion:['', [Validators.required,Validators.minLength(3)]],
