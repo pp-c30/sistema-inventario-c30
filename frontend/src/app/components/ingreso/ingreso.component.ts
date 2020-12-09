@@ -28,7 +28,7 @@ export class IngresoComponent implements OnInit {
 
     this.autService.login(this.formIngreso.value).subscribe(
       respuesta => {
-        if (respuesta=='Contraseña incorrecta') {
+        if (respuesta=='Contraseña incorrecta' || respuesta=='Usuario o contraseña incorrecta') {
 
           console.log(respuesta);
         }else{
