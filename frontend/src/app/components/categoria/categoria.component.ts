@@ -26,6 +26,12 @@ export class CategoriaComponent implements OnInit {
   ngOnInit(): void {
     this.listarCategoria();
   }
+
+  btnreset(){
+
+    this.formCat.reset();
+  }
+
   listarCategoria(){
     this.caService.getCategoria().subscribe(
       resultado => this.getCat = resultado,

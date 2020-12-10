@@ -26,6 +26,11 @@ export class SeccionComponent implements OnInit {
     this.listarSeccion();
   }
 
+  btnreset(){
+
+    this.formSec.reset();
+  }
+
   listarSeccion(){
     this.seService.getSeccion().subscribe(
       resultado => this.getSec = resultado,
