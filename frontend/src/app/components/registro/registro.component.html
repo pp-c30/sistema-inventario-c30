@@ -1,22 +1,22 @@
 <div class="row">
     <div class="col-md-4 mx-auto">
         <div class="card">
-            <div class="card-header">
-                Registro
+            <div class="card-header" style="text-align: center;">
+                <img src="../../../assets/img/logo-CET30.png " style="width: 30%; ">
             </div>
-            <div class="card-body">
-                <form [formGroup]="formRegistro" (ngSubmit)="registrar()">
-                    <div class="form-group">
-                        <input formControlName="username" type="text" class="form-control" placeholder="Ingrese nombre de Usuario">
+            <div class="card-body ">
+                <form [formGroup]="formRegistro " (ngSubmit)="registrar() ">
+                    <div class="form-group ">
+                        <input formControlName="username " type="text " class="form-control " placeholder="Ingrese nombre de Usuario ">
                     </div>
-                    <div class="form-group">
-                        <input formControlName="password" type="password" class="form-control" placeholder="Ingrese contraseña">
+                    <div class="form-group ">
+                        <input formControlName="password " type="password " class="form-control " placeholder="Ingrese contraseña ">
                     </div>
-                    <div class="form-group">
-                        <input formControlName="email" type="text" class="form-control" placeholder="Ingrese E-Mail">
+                    <div class="form-group ">
+                        <input formControlName="email " type="text " class="form-control " placeholder="Ingrese E-Mail ">
                     </div>
-                    <div class="form-group">
-                        <button class="btn btn-success">Registrar</button>
+                    <div class="form-group ">
+                        <button class="btn btn-success ">Registrar</button>
                     </div>
                 </form>
             </div>
