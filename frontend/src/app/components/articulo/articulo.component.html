@@ -76,7 +76,7 @@
                         <div class="form-group">
                             <div class="input-group mb-3">
                                 <div class="input-group-prepend">
-                                    <span class="input-group-text">$</span>
+                                    <i class="fas fa-dollar-sign"></i>
                                 </div>
                                 <input [ngClass]="{'is-invalid':(formArt.get('valor')?.touched || formArt.get('valor')?.dirty) && formArt.get('valor')?.invalid}" formControlName="valor" type="text" class="form-control" aria-label="Amount (to the nearest dollar)">
                                 <div class="invalid-feedback">
