@@ -18,3 +18,19 @@
         </tbody>
     </table>
 </div>
+<div>
+    <form [formGroup]="formMov" (ngSubmit)="guardarMovimiento()">
+        <input type="hidden" formControlName="id_articulo">
+        <input type="hidden" formControlName="cantidad_total">
+        <div class="form-group">
+            <input placeholder="Cantidad" class="form-control" formControlName="cantidad">
+        </div>
+        <div class="form-group">
+            <select formControlName="destino_seccion" class="form-control" id="exampleSelect1">
+                <option value="0" selected disabled>Seleccione la Sección</option>
+                <option [value]="seccion.id_seccion" *ngFor="let seccion of getSec">{{seccion.nombre_seccion}}</option>
+            </select>
+        </div>
+        <button type="submit" class="btn btn-outline-success">Mover</button>
+    </form>
+</div>

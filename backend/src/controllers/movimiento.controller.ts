@@ -8,7 +8,9 @@ export class MovimientoController {
     
         const db = await conexion();
         
-        let mov = await db.query('select * from movimiento');
+        let id_articulo = req.params.id_articulo;
+
+        let mov = await db.query('select *,DATE_FORMAT(fecha_hora, "%d-%m-%Y") as fecha_hora from movimiento where id_articulo = ?', [id_articulo]);
         
         return res.json(mov);
     }

@@ -1,7 +1,7 @@
 //  el modeles se encarga de indicar en de que tipo y en que orden son ingresados los datos
  export interface IArt {
 
-    id_articulo?:number;
+    id_articulo?:Number;
     categoria:number;
     cant_total:number;
     cant:number;

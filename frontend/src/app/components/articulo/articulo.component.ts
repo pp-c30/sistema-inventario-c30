@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from "@angular/router";
 import { CategoriaService } from "../../services/categoria.service";
 import { SeccionService } from "../../services/seccion.service";
 import { ArticuloService } from "../../services/articulo.service";
@@ -34,7 +35,7 @@ export class ArticuloComponent implements OnInit {
   buscarArt:any;
   estado: string[] = ['En uso', 'Espera mantenimiento', 'Reparación'];
 
-  constructor(private movService:MovimientoService, private spinner:NgxSpinnerService, private caService:CategoriaService, private seService:SeccionService, private artService:ArticuloService, private fb: FormBuilder) { 
+  constructor(private route:Router, private movService:MovimientoService, private spinner:NgxSpinnerService, private caService:CategoriaService, private seService:SeccionService, private artService:ArticuloService, private fb: FormBuilder) { 
 
     this.formArt = this.fb.group({
 
@@ -153,7 +154,10 @@ export class ArticuloComponent implements OnInit {
     
   }
 
+  irMovimientos(id_art:Number){
 
+    this.route.navigate(['movimientos', id_art]);
+  }
 
   btnMovimiento(id_art:Number, cant_total:Number){
 

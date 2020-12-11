@@ -9,9 +9,9 @@ export class MovimientoService {
 
   constructor(private http:HttpClient) { }
 
-  getMovimiento(){
+  getMovimiento(id_articulo:Number){
 
-    return this.http.get<IMov[]>('http://localhost:3000/movimiento');
+    return this.http.get<IMov[]>('http://localhost:3000/movimiento/'+id_articulo);
   }
 
   saveMovimiento(unMovimiento:IMov){

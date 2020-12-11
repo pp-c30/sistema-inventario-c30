@@ -4,6 +4,7 @@ import { BodyComponent } from './components/body/body.component';
 import { IngresoComponent } from "./components/ingreso/ingreso.component";
 import { RegistroComponent } from "./components/registro/registro.component";
 import { AuthGuard } from "./auth.guard";
+import { MovimientoComponent } from './components/movimiento/movimiento.component';
 
 const routes: Routes = [
 
@@ -23,6 +24,10 @@ const routes: Routes = [
   {
     path:'register',
     component:RegistroComponent
+  },
+  {
+    path:'movimientos/:id_articulo',
+    component:MovimientoComponent
   }
 ];
 

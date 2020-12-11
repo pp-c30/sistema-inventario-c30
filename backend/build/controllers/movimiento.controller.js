@@ -15,7 +15,8 @@ class MovimientoController {
     listarMovimiento(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
             const db = yield database_1.conexion();
-            let mov = yield db.query('select * from movimiento');
+            let id_articulo = req.params.id_articulo;
+            let mov = yield db.query('select *,DATE_FORMAT(fecha_hora, "%d-%m-%Y") as fecha_hora from movimiento where id_articulo = ?', [id_articulo]);
             return res.json(mov);
         });
     }
