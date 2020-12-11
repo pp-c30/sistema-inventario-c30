@@ -6,6 +6,7 @@ import { ArticuloService } from "../../services/articulo.service";
 import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 import { IArt } from 'src/app/models/articulo';
 import { NgxSpinnerService } from "ngx-spinner";
+import {NgbDateStruct} from '@ng-bootstrap/ng-bootstrap';
 
 interface HTMLInputEvent{
   target:HTMLInputElement & EventTarget;
@@ -18,6 +19,7 @@ interface HTMLInputEvent{
 })
 export class ArticuloComponent implements OnInit {
 
+  model: NgbDateStruct;
   show = true;
   display = 'display:none';
   op = false;
@@ -53,8 +55,6 @@ export class ArticuloComponent implements OnInit {
     this.listarCategoria();
     this.listarSeccion();
     this.listarArticulos();
-    this.formArt.get('categoria').setValue(0);
-    this.formArt.get('seccion').setValue(0);
   }
 
   btnNuevoArt(){
@@ -127,7 +127,7 @@ export class ArticuloComponent implements OnInit {
         this.imgPreview = '';
         this.formArt.reset();
         this.listarArticulos();
-    this.spinner.hide();
+        this.spinner.hide();
 
       },
       error=>{
@@ -139,20 +139,19 @@ export class ArticuloComponent implements OnInit {
 
     
   }
-/*
+
+  btnMovimiento(){
+
+    this.formArt.get('seccion').setValue(0);
+  }
+
   guardarMovimiento(articulo:IArt){
 
-    this.movService.saveMovimiento(this.formArt.value).subscribe(
-
-      resultado => {
-
-        console.log(resultado);
-        this.formArt.reset();
-      },
-      error => console.log(error)
-    )
+    this.formArt.setValue({
+      id_articulo:articulo.id_articulo
+    })
   }
-  */
+
   editarArticulo(articulo:IArt){
 
     this.display = 'display:block';
