@@ -12,6 +12,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.ArticuloController = void 0;
 const database_1 = require("../database");
 const cloudinary_1 = __importDefault(require("cloudinary"));
 const fs_extra_1 = __importDefault(require("fs-extra"));
@@ -37,11 +38,12 @@ class ArticuloController {
                 const resultado_cloud = yield cloudinary_1.default.v2.uploader.upload(req.file.path);
                 console.log(resultado_cloud);
                 //se guarda datos en la base
+                console.log(req.body.fecha_alta);
                 const guardarArticulo = {
                     categoria: Number(req.body.categoria),
                     cant_total: Number(req.body.cant_total),
                     cant: Number(req.body.cant),
-                    fecha_alta: req.body.fecha_alta,
+                    fecha_alta: String(req.body.fecha_alta),
                     descripcion: req.body.descripcion,
                     seccion: Number(req.body.seccion),
                     estado: Number(req.body.estado),

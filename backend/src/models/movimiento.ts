@@ -5,6 +5,7 @@ export interface IMov{
     destino_seccion:number;
     fecha_hora:Date;
     cantidad:number;
+    estado:number;
 }
 /*
 "id_movimiento": "1",

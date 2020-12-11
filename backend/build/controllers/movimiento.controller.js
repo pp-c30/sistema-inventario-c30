@@ -9,6 +9,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.MovimientoController = void 0;
 const database_1 = require("../database");
 class MovimientoController {
     listarMovimiento(req, res) {
@@ -21,8 +22,18 @@ class MovimientoController {
     guardarMovimiento(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
             const db = yield database_1.conexion();
-            const mov = req.body;
+            const mov = {
+                id_articulo: req.body.id_articulo,
+                destino_seccion: req.body.destino_seccion,
+                fecha_hora: new Date(),
+                cantidad: req.body.cantidad,
+                estado: req.body.estado
+            };
             yield db.query("insert into movimiento set ?", [mov]);
+            const art = {
+                cant: req.body.cantidad_total - req.body.cantidad
+            };
+            yield db.query("update articulo set ? where id_articulo = ?", [art, req.body.id_articulo]);
             return res.json('El movimiento fue archivado exitosamente');
         });
     }

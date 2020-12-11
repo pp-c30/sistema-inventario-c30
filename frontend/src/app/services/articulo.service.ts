@@ -21,7 +21,7 @@ export class ArticuloService {
     fd.append('img',file);
     fd.append('cant',String(unArt.cant_total));
     fd.append('cant_total',String(unArt.cant_total));
-    fd.append('fecha_alta',String(unArt.fecha_alta));
+    fd.append('fecha_alta',String(unArt.fecha_alta.year+'-'+unArt.fecha_alta.month+'-'+unArt.fecha_alta.day));
     fd.append('descripcion',unArt.descripcion);
     fd.append('seccion',String(unArt.seccion));
     fd.append('estado','1');
@@ -40,7 +40,7 @@ export class ArticuloService {
 
     fd.append('cant',String(unArt.cant));
     fd.append('cant_total',String(unArt.cant_total));
-    fd.append('fecha_alta',String(unArt.fecha_alta));
+    fd.append('fecha_alta',String(unArt.fecha_alta.year+'-'+unArt.fecha_alta.month+'-'+unArt.fecha_alta.day));
     fd.append('descripcion',unArt.descripcion);
     fd.append('seccion',String(unArt.seccion));
     fd.append('estado',String(unArt.estado));
