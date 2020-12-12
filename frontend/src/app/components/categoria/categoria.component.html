@@ -1,55 +1,81 @@
-<div style="text-align: center;">
-    <table class="table table-dark">
-        <thead>
-            <tr>
-                <th>id</th>
-                <th>Nombre de la categoria</th>
-                <th>Operaciones</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr *ngFor="let categoria of getCat">
-                <td>
-                    {{categoria.descripcion}}
-                </td>
-                <td>
-                    {{categoria.id_categoria}}
-                </td>
-                <td>
-                    <div class="btn-group">
-                        <button (click)="eliminarCategoria(categoria.id_categoria);" class="btn btn-outline-danger">
+<button (click)="btnreset()" type="button" class="btn btn-secondary" data-toggle="modal" data-target="#categoriaModal" style="margin-right: 10px;">
+    Categoria
+</button>
+
+<div class="modal fade" id="categoriaModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+<span aria-hidden="true">&times;</span>
+</button>
+            </div>
+
+            <div class="row">
+                <div class="col">
+                    <div class="card">
+                        <div class="card-header">Formulario Categoria</div>
+                        <div class="card-body">
+                            <form [formGroup]="formCat" (ngSubmit)="guardarCategoria()" novalidate>
+                                <div class="modal-body">
+                                    <input formControlName="id_categoria" type="hidden">
+                                    <div class="form-group">
+                                        <!-- [ngClass]permite agregar clases dinamicamente -->
+                                        <!-- el signo ? ayuda a realizar la lectura y posteriormente agregar la clase sin delay o retrasos, basicamente asegura la lectura -->
+                                        <input [ngClass]="{'is-invalid':(formCat.get('descripcion')?.touched || formCat.get('descripcion')?.dirty) && formCat.get('descripcion')?.invalid}" formControlName="descripcion" placeholder="¿Cual es el nombre de la categoria?" type="text" class="form-control">
+                                        <!-- permite agregar letras en rojo a la hora de validar -->
+                                        <div class="invalid-feedback">
+                                            <span *ngIf="formCat.get('descripcion') .hasError('required')">Campo requerido e </span>
+                                            <span *ngIf="!formCat.get('descripcion') .hasError('minLenght')">Ingrese minimo 3 caracteres</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="modal-footer">
+                                    <button [disabled]="formCat.invalid" class="btn btn-success">Guardar categoria</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    <div class="modal-body">
+                        <div style="text-align: center;">
+                            <table class="table table-dark">
+                                <thead>
+                                    <tr>
+                                        <th>Nombre de la categoria</th>
+                                        <th>Operaciones</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr *ngFor="let categoria of getCat">
+                                        <td>
+                                            {{categoria.descripcion}}
+                                        </td>
+                                        <td>
+                                            <div class="btn-group">
+                                                <button (click)="eliminarCategoria(categoria.id_categoria);" class="btn btn-outline-danger">
                             <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-trash" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
                                 <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z"/>
                                 <path fill-rule="evenodd" d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4L4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z"/>
                               </svg>
                         </button>
-                        <button (click)="editarCategoria(categoria)" class="btn btn-outline-success">
+                                                <button (click)="editarCategoria(categoria)" class="btn btn-outline-success">
                             <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-pencil" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
                                 <path fill-rule="evenodd" d="M12.146.146a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1 0 .708l-10 10a.5.5 0 0 1-.168.11l-5 2a.5.5 0 0 1-.65-.65l2-5a.5.5 0 0 1 .11-.168l10-10zM11.207 2.5L13.5 4.793 14.793 3.5 12.5 1.207 11.207 2.5zm1.586 3L10.5 3.207 4 9.707V10h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.293l6.5-6.5zm-9.761 5.175l-.106.106-1.528 3.821 3.821-1.528.106-.106A.5.5 0 0 1 5 12.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.468-.325z"/>
                               </svg>
                         </button>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
                     </div>
-                </td>
-            </tr>
-        </tbody>
-    </table>
-</div>
-<div class="card">
-    <div class="card-header">Formulario de categoria </div>
-    <div class="card-body">
-        <form [formGroup]="formCat" (ngSubmit)="guardarCategoria()" novalidate> 
-            <input formControlName="id_categoria" type="hidden">
-            <div class="form-group">
-                <!-- [ngClass]permite agregar clases dinamicamente -->
-                <!-- el signo ? ayuda a realizar la lectura y posteriormente agregar la clase sin delay o retrasos, basicamente asegura la lectura -->
-                <input [ngClass]="{'is-invalid':(formCat.get('descripcion')?.touched || formCat.get('descripcion')?.dirty) && formCat.get('descripcion')?.invalid}" formControlName="descripcion" placeholder="¿Cual es el nombre de la categoria?" type="text" class="form-control">
-               <!-- permite agregar letras en rojo a la hora de validar -->
-                <div class="invalid-feedback">
-                    <span *ngIf="formCat.get('descripcion') .hasError('required')">Campo requerido e </span>
-                    <span *ngIf="!formCat.get('descripcion') .hasError('minLenght')">Ingrese minimo 3 caracteres</span>
                 </div>
             </div>
-            <button [disabled]="formCat.invalid" class="btn btn-success">Guardar categoria</button>
-        </form>
+        </div>
     </div>
 </div>

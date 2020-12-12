@@ -1,9 +1,24 @@
+<button (click)="btnNuevoArt()" type="button" class="btn btn-secondary" data-toggle="modal" data-target="#exampleModal" style="margin-right: 10px;">
+    Nuevo Artículo
+</button>
+
+<button type="button" class="btn btn-secondary" (click)="btnModoEdicion()" style="margin-right: 10px;">
+    Modo Edición
+</button>
+
+<button type="button" class="btn btn-secondary" (click)="btnDadoBaja()" style="margin-right: 10px;">
+    Dados de Baja
+</button>
+
+<app-seccion></app-seccion>
+
+<app-categoria></app-categoria>
+
 <!-- Modal -->
-<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
           </button>
@@ -24,9 +39,9 @@
                     </div>
                     <div class="form-group">
                         <select formControlName="categoria" class="form-control" id="exampleSelect1">
-                <option value="0" selected disabled>Seleccione la Categoría</option>
-              <option [value]="categoria.id_categoria" *ngFor="let categoria of getCat">{{categoria.descripcion}}</option>
-            </select>
+                            <option value="0" selected disabled>Seleccione la Categoría</option>
+                            <option [value]="categoria.id_categoria" *ngFor="let categoria of getCat">{{categoria.descripcion}}</option>
+                        </select>
                     </div>
                     <div class="form-group">
                         <input [ngClass]="{'is-invalid':(formArt.get('cant_total')?.touched || formArt.get('cant_total')?.dirty) && formArt.get('cant_total')?.invalid}" formControlName="cant_total" placeholder="¿Cuál es la cantidad total de artículos?" type="text" class="form-control">
@@ -56,15 +71,12 @@
                         <div class="form-group">
                             <div class="input-group mb-3">
                                 <div class="input-group-prepend">
-                                    <span class="input-group-text">$</span>
+                                    <i class="fas fa-dollar-sign"></i>
                                 </div>
                                 <input [ngClass]="{'is-invalid':(formArt.get('valor')?.touched || formArt.get('valor')?.dirty) && formArt.get('valor')?.invalid}" formControlName="valor" type="text" class="form-control" aria-label="Amount (to the nearest dollar)">
                                 <div class="invalid-feedback">
                                     <span *ngIf="formArt.get('valor') .hasError('required')">Campo requerido e </span>
                                     <span *ngIf="!formArt.get('valor') .hasError('minLenght')">Ingrese minimo 2 caracteres</span>
-                                </div>
-                                <div class="input-group-append">
-                                    <span class="input-group-text">.00</span>
                                 </div>
                             </div>
                         </div>
@@ -90,105 +102,92 @@
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    <button [disabled]="formArt.invalid" type="submit" class="btn btn-outline-danger">Bye!</button>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                    <button [disabled]="formArt.invalid" type="submit" class="btn btn-outline-success">Guardar</button>
                 </div>
             </form>
         </div>
     </div>
 </div>
 
-<button (click)="btnNuevoArt()" type="button" class="btn btn-success" data-toggle="modal" data-target="#exampleModal">
-    Nuevo Artículo
-</button>
-
-<button type="button" class="btn btn-warning" (click)="btnModoEdicion()">
-    Modo Edición
-</button>
-
-<button type="button" class="btn btn-secondary" (click)="btnDadoBaja()">
-    Dados de Baja
-</button>
-
-<div style="text-align: center;">
+<div style="text-align: center; margin-top: 10px;">
 
     <div class="row">
         <div class="col-sm-4">
             <div class="form-group">
-                <input [(ngModel)]="buscarArt" type="text" class="form-control">
+                <input [(ngModel)]="buscarArt" type="text" class="form-control" placeholder="Filtrar">
             </div>
         </div>
-    </div>
-    <table class="table table-dark">
+        <table class="table table-dark">
 
-        <thead>
-            <tr>
-                <th>Imagen</th>
-                <th>Categoría</th>
-                <th>Cantidad Total</th>
-                <th>Cantidad en Sección</th>
-                <th>Sección</th>
-                <th>Descripción</th>
-                <th>Valor</th>
-                <th>Origen</th>
-                <th>Fecha de Alta</th>
-                <th *ngIf='baja'>Fecha de Baja</th>
-                <th *ngIf="op">Eliminar/Editar</th>
-                <!--
+            <thead>
+                <tr>
+                    <th>Imagen</th>
+                    <th>Categoría</th>
+                    <th>Cantidad Total</th>
+                    <th>Cantidad en Sección</th>
+                    <th>Sección</th>
+                    <th>Descripción</th>
+                    <th>Valor</th>
+                    <th>OBSERV.</th>
+                    <th>Fecha de Alta</th>
+                    <th *ngIf="baja">Fecha de Baja</th>
+                    <th *ngIf="op">Eliminar/Editar</th>
+                    <!--
                 <th *ngIf="op">Mover</th>
                 -->
-            </tr>
-        </thead>
-        <tbody>
-            <tr *ngFor="let articulo of getArt | filter:buscarArt">
-                <td>
-                    <img [src]="articulo.img">
-                </td>
-                <td>
-                    {{articulo.categoria}}
-                </td>
-                <td>
-                    {{articulo.cant_total}}
-                </td>
-                <td>
-                    {{articulo.cant}}
-                </td>
-                <td>
-                    {{articulo.seccion}}
-                </td>
-                <td>
-                    {{articulo.descripcion}}
-                </td>
-                <td>
-                    {{articulo.valor}}
-                </td>
-                <td>
-                    {{articulo.origen}}
-                </td>
-                <td>
-                    {{articulo.fecha_alta}}
-                </td>
-                <td *ngIf='baja'>
-                    {{articulo.fecha_baja}}
-                </td>
-                <td *ngIf="op">
-                    <div class="btn-group">
-                        <button (click)="eliminarArticulo(articulo)" type="button" class="btn btn-outline-danger">
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let articulo of getArt | filter:buscarArt">
+                    <td>
+                        <img [src]="articulo.img">
+                    </td>
+                    <td>
+                        {{articulo.categoria}}
+                    </td>
+                    <td>
+                        {{articulo.cant_total}}
+                    </td>
+                    <td>
+                        {{articulo.cant}}
+                    </td>
+                    <td>
+                        {{articulo.seccion}}
+                    </td>
+                    <td>
+                        {{articulo.descripcion}}
+                    </td>
+                    <td>
+                        $ {{articulo.valor}}
+                    </td>
+                    <td>
+                        {{articulo.origen}}
+                    </td>
+                    <td>
+                        {{articulo.fecha_alta}}
+                    </td>
+                    <td *ngIf="baja">
+                        {{articulo.fecha_baja}}
+                    </td>
+                    <td *ngIf="op">
+                        <div class="btn-group">
+                            <button (click)="eliminarArticulo(articulo)" type="button" class="btn btn-outline-danger">
                                     <svg width="1em " height="1em " viewBox="0 0 16 16 " class="bi bi-trash " fill="currentColor " xmlns="http://www.w3.org/2000/svg ">
                                         <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z "/>
                                         <path fill-rule="evenodd " d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4L4 4.059V13a1 1 0 0 0 1 1h6a1
                             1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z "/>
                                   </svg>
                                 </button>
-                        <button (click)="editarArticulo(articulo)" type="button" class="btn btn-outline-success" data-toggle="modal" data-target="#exampleModal">
+                            <button (click)="editarArticulo(articulo)" type="button" class="btn btn-outline-success" data-toggle="modal" data-target="#exampleModal">
                                     <svg width="1em " height="1em " viewBox="0 0 16 16 " class="bi bi-pencil " fill="currentColor " xmlns="http://www.w3.org/2000/svg ">
                                         <path fill-rule="evenodd " d="M12.146.146a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1 0 .708l-10 10a.5.5 0 0 1-.168.11l-5 2a.5.5 0 0 1-.65-.65l2-5a.5.5 0 0 1 .11-.168l10-10zM11.207 2.5L13.5 4.793 14.793 3.5 12.5 1.207 11.207
                             2.5zm1.586 3L10.5 3.207 4 9.707V10h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.293l6.5-6.5zm-9.761 5.175l-.106.106-1.528 3.821 3.821-1.528.106-.106A.5.5 0 0 1 5 12.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.468-.325z "/>
                                     </svg>
                         </button>
-                    </div>
-                </td>
-                <!--
+                        </div>
+                    </td>
+                    <!--
                 <td *ngIf="op">
                     <div class="btn-group">
                         <button (click)="guardarMovimiento(articulo)" type="button" class="btn btn-outline-alert">
@@ -199,7 +198,8 @@
                     </div>
                 </td>
                 -->
-            </tr>
-        </tbody>
-    </table>
+                </tr>
+            </tbody>
+        </table>
+    </div>
 </div>

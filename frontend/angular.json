@@ -25,7 +25,7 @@
                         ],
                         "styles": [
                             "src/styles.css",
-                            "node_modules/bootswatch/dist/materia/bootstrap.min.css"
+                            "node_modules/bootswatch/dist/darkly/bootstrap.min.css"
                         ],
                         "scripts": [
                             "node_modules/bootswatch/dist/materia/jquery.min.js",

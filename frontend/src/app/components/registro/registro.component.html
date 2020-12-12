@@ -1,37 +1,33 @@
-<div class="row">
+<div class="row" style="margin-top: 150px;">
     <div class="col-md-4 mx-auto">
         <div class="card">
-            <div class="card-header">
-                Registro
+            <div class="card-header" style="text-align: center;">
+                <img src="../../../assets/img/logo-CET30.png " style="width: 30%; ">
             </div>
-            <div class="card-body">
-                <form [formGroup]="formRegistro" (ngSubmit)="registrar()">
-                    <div class="form-group">
-                        <input formControlName="username" type="text" class="form-control" placeholder="Ingrese nombre de Usuario">
+            <div class="card-body ">
+                <form [formGroup]="formRegistro " (ngSubmit)="registrar() ">
+                    <div class="form-group ">
+                        <input formControlName="username " type="text " class="form-control " placeholder="Ingrese nombre de Usuario ">
                     </div>
-                    <div class="form-group">
-                        <input formControlName="password" type="password" class="form-control" placeholder="Ingrese contraseña">
+                    <div class="form-group ">
+                        <input formControlName="password " type="password " class="form-control " placeholder="Ingrese contraseña ">
                     </div>
+                    <div class="form-group ">
+                        <input formControlName="email " type="text " class="form-control " placeholder="Ingrese E-Mail ">
+                    </div>                    
                     <div class="form-group">
-                        <input formControlName="email" type="text" class="form-control" placeholder="Ingrese E-Mail">
-                    </div>
                     
-                    <div class="form-group">
-                    <div id='detalles_reserva'>
 
                         <table>
                             <tbody>
                             <tr>
-                            <td> <button class="btn btn-success"routerLink="/login"> Ingresar </button> </td>
-                            <td></td><td></td>
-                            <td><button class="btn btn-success">Registrar</button></td>
+                            <td></td>
+                            <td><button style="border: #000 1px solid;  background-color:#697AC7" class="btn btn-success">Registrar</button>  </td><td></td>
+                            <td><button  style="border: #000 1px solid;" class="btn btn-success"routerLink="/login"> Ingresar </button>  </td>
                             </tr>
                             </tbody>
                             </table>
                     
-                     
-                    </div>
-                       
                     </div>
                 </form>
             </div>
