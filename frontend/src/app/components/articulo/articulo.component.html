@@ -124,13 +124,15 @@
             <span aria-hidden="true">&times;</span>
           </button>
             </div>
-            <form [formGroup]="formArt">
+            <form [formGroup]="formMov" (ngSubmit)="guardarMovimiento()">
                 <div class="modal-body">
+                    <input type="hidden" formControlName="id_articulo">
+                    <input type="hidden" formControlName="cantidad_total">
                     <div class="form-group">
-                        <input placeholder="Cantidad" class="form-control">
+                        <input placeholder="Cantidad" class="form-control" formControlName="cantidad">
                     </div>
                     <div class="form-group">
-                        <select formControlName="seccion" class="form-control" id="exampleSelect1">
+                        <select formControlName="destino_seccion" class="form-control" id="exampleSelect1">
                         <option value="0" selected disabled>Seleccione la Sección</option>
                         <option [value]="seccion.id_seccion" *ngFor="let seccion of getSec">{{seccion.nombre_seccion}}</option>
                     </select>
@@ -138,7 +140,7 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-                    <button type="button" class="btn btn-outline-success">Mover</button>
+                    <button type="submit" class="btn btn-outline-success">Mover</button>
                 </div>
             </form>
         </div>
@@ -181,10 +183,10 @@
                         {{articulo.categoria}}
                     </td>
                     <td>
-                        {{articulo.cant_total}}
+                        <span class="badge badge-primary">{{articulo.cant_total}}</span>
                     </td>
                     <td>
-                        {{articulo.cant}}
+                        <span class="badge badge-success">{{articulo.cant}}</span>
                     </td>
                     <td>
                         {{articulo.seccion}}
@@ -214,7 +216,7 @@
                             1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z "/>
                                   </svg>
                                 </button>
-                            <!-- btn Editar-->
+                            <!-- btn Editar -->
                             <button (click)="editarArticulo(articulo)" type="button" class="btn btn-outline-success" data-toggle="modal" data-target="#exampleModal">
                                     <svg width="1em " height="1em " viewBox="0 0 16 16 " class="bi bi-pencil " fill="currentColor " xmlns="http://www.w3.org/2000/svg ">
                                         <path fill-rule="evenodd " d="M12.146.146a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1 0 .708l-10 10a.5.5 0 0 1-.168.11l-5 2a.5.5 0 0 1-.65-.65l2-5a.5.5 0 0 1 .11-.168l10-10zM11.207 2.5L13.5 4.793 14.793 3.5 12.5 1.207 11.207
@@ -224,9 +226,9 @@
                         </div>
                     </td>
                     <td *ngIf="op">
-                        <!-- btn Movimiento-->
+                        <!-- btn Movimiento -->
                         <div class="btn-group">
-                            <button (click)="btnMovimiento" type="button" class="btn btn-outline-warning" data-toggle="modal" data-target="#movimientoModal">
+                            <button (click)="btnMovimiento(articulo.id_articulo, articulo.cant_total)" type="button" class="btn btn-outline-warning" data-toggle="modal" data-target="#movimientoModal">
                                 <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-forward" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
                                     <path fill-rule="evenodd" d="M9.502 5.513a.144.144 0 0 0-.202.134V6.65a.5.5 0 0 1-.5.5H2.5v2.9h6.3a.5.5 0 0 1 .5.5v1.003c0 .108.11.176.202.134l3.984-2.933a.51.51 0 0 1 .042-.028.147.147 0 0 0 0-.252.51.51 0 0 1-.042-.028L9.502 5.513zM8.3 5.647a1.144 1.144 0 0 1 1.767-.96l3.994 2.94a1.147 1.147 0 0 1 0 1.946l-3.994 2.94a1.144 1.144 0 0 1-1.767-.96v-.503H2a.5.5 0 0 1-.5-.5v-3.9a.5.5 0 0 1 .5-.5h6.3v-.503z"/>
                                     </svg>

@@ -32,12 +32,12 @@ export class ArticuloController {
          console.log(resultado_cloud);
 
         //se guarda datos en la base
-
+            console.log(req.body.fecha_alta);
         const guardarArticulo:IArt = {
             categoria:Number(req.body.categoria),
             cant_total:Number(req.body.cant_total),
             cant:Number(req.body.cant),
-            fecha_alta:req.body.fecha_alta,
+            fecha_alta:String(req.body.fecha_alta),
             descripcion:req.body.descripcion,
             seccion:Number(req.body.seccion),
             estado:Number(req.body.estado),

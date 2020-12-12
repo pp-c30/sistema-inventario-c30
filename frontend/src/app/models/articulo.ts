@@ -4,7 +4,7 @@ export interface IArt {
     categoria:number;
     cant_total:number;
     cant:number;
-    fecha_alta:Date;
+    fecha_alta:any;
     fecha_baja?:Date;
     descripcion:string;
     seccion:number;

@@ -17,9 +17,23 @@ export class MovimientoController {
 
         const db = await conexion();
 
-        const mov:IMov = req.body;
+        const mov:IMov = {
+
+            id_articulo:req.body.id_articulo,
+            destino_seccion:req.body.destino_seccion,
+            fecha_hora:new Date(),
+            cantidad:req.body.cantidad,
+            estado:req.body.estado
+        }
 
         await db.query("insert into movimiento set ?",[mov]);
+
+        const art = {
+
+            cant:req.body.cantidad_total - req.body.cantidad
+        }
+
+        await db.query("update articulo set ? where id_articulo = ?", [art, req.body.id_articulo]);
     
         return res.json('El movimiento fue archivado exitosamente');
     }

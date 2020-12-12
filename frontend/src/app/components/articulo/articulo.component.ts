@@ -1,12 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { CategoriaService } from "../../services/categoria.service";
 import { SeccionService } from "../../services/seccion.service";
-/*import { MovimientoService } from "../../services/movimiento.service";*/
 import { ArticuloService } from "../../services/articulo.service";
 import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 import { IArt } from 'src/app/models/articulo';
 import { NgxSpinnerService } from "ngx-spinner";
 import {NgbDateStruct} from '@ng-bootstrap/ng-bootstrap';
+import { MovimientoService } from "../../services/movimiento.service";
 
 interface HTMLInputEvent{
   target:HTMLInputElement & EventTarget;
@@ -28,11 +28,13 @@ export class ArticuloComponent implements OnInit {
   getSec = [];
   getArt = [];
   formArt: FormGroup; 
+  formMov: FormGroup;
   file: File;
   imgPreview: string | ArrayBuffer;
   buscarArt:any;
+  estado: string[] = ['En uso', 'Espera mantenimiento', 'Reparación'];
 
-  constructor(/*private movService:MovimientoService, */private spinner:NgxSpinnerService, private caService:CategoriaService, private seService:SeccionService, private artService:ArticuloService, private fb: FormBuilder) { 
+  constructor(private movService:MovimientoService, private spinner:NgxSpinnerService, private caService:CategoriaService, private seService:SeccionService, private artService:ArticuloService, private fb: FormBuilder) { 
 
     this.formArt = this.fb.group({
 
@@ -48,6 +50,17 @@ export class ArticuloComponent implements OnInit {
       valor:['',[Validators.required,Validators.minLength(2)]],
       img:[''],
       origen:['',[Validators.required,Validators.minLength(3)]]
+    })
+
+    this.formMov = this.fb.group({
+
+      id_movimiento:[null],
+      id_articulo:[null],
+      destino_seccion:[0],
+      fecha_hora:[null],
+      cantidad:[null],
+      cantidad_total:[null],
+      estado:[0]
     })
   }
   // esto se inicia cuando arranca el componente
@@ -140,16 +153,27 @@ export class ArticuloComponent implements OnInit {
     
   }
 
-  btnMovimiento(){
 
-    this.formArt.get('seccion').setValue(0);
+
+  btnMovimiento(id_art:Number, cant_total:Number){
+
+    this.formMov.get('id_articulo').setValue(id_art);
+    this.formMov.get('cantidad_total').setValue(cant_total);
+    this.formMov.get('destino_seccion').setValue(0);
   }
 
-  guardarMovimiento(articulo:IArt){
+  guardarMovimiento(){
 
-    this.formArt.setValue({
-      id_articulo:articulo.id_articulo
-    })
+    this.movService.saveMovimiento(this.formMov.value).subscribe(
+
+      resultado => {
+        this.formMov.reset();
+        this.listarArticulos();
+        console.log(resultado);
+      },error=>{
+        console.log(error);
+      }
+    )
   }
 
   editarArticulo(articulo:IArt){
