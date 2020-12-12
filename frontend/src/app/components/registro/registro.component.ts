@@ -16,9 +16,9 @@ export class RegistroComponent implements OnInit {
 
     this.formRegistro = this.fb.group({
 
-      username:['',[Validators.required]],
-      password:['',[Validators.required]],
-      email:['',[Validators.required, Validators.pattern("^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$")]]
+      username:['',[Validators.required,Validators.minLength(4)]],
+      password:['',[Validators.required,Validators.minLength(8)]],
+      email:['',[Validators.required,Validators.minLength(8), Validators.pattern("^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$")]]
     })
   }
 
