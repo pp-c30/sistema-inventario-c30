@@ -4,6 +4,7 @@ import { IMov } from "../../models/movimiento";
 import { ActivatedRoute } from "@angular/router";
 import { FormBuilder, FormGroup } from "@angular/forms";
 import { SeccionService } from "../../services/seccion.service";
+import { AutenticacionService } from "../../services/autenticacion.service";
 
 @Component({
   selector: 'app-movimiento',
@@ -17,7 +18,7 @@ export class MovimientoComponent implements OnInit {
   formMov:FormGroup;
   getSec = [];
 
-  constructor(private seService:SeccionService, private fb:FormBuilder, private activated:ActivatedRoute, private movService:MovimientoService) {
+  constructor(public autService:AutenticacionService, private seService:SeccionService, private fb:FormBuilder, private activated:ActivatedRoute, private movService:MovimientoService) {
 
     this.formMov = this.fb.group({
 
