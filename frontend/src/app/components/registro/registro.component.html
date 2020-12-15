@@ -6,39 +6,14 @@
             </div>
             <div class="card-body ">
                 <form [formGroup]="formRegistro " (ngSubmit)="registrar() ">
-                    <div class="form-group ">
-<<<<<<< HEAD
+                    <div class="form-group">
                         <input formControlName="username" type="text" class="form-control" placeholder="Ingrese nombre de Usuario">
                     </div>
-                    <div class="form-group ">
+                    <div class="form-group">
                         <input formControlName="password" type="password" class="form-control" placeholder="Ingrese contraseña">
                     </div>
-                    <div class="form-group ">
+                    <div class="form-group">
                         <input formControlName="email" type="text" class="form-control" placeholder="Ingrese E-Mail">
-=======
-                        <input formControlName="username " type="text " class="form-control " placeholder="Ingrese nombre de Usuario ">
-                        <!-- [ngClass]="{'is-invalid':(formRegistro.get('username')?.touched || formRegistro.get('username')?.dirty) && formRegistro.get('username')?.invalid}" -->
-                        <!-- <div class="invalid-feedback">
-                            <span *ngIf="formRegistro.get('username') .hasError('required')">Campo requerido e </span>
-                            <span *ngIf="!formRegistro.get('username') .hasError('minLenght')">Ingrese minimo 3 caracteres</span>
-                        </div> -->
-                    </div>
-                    <div class="form-group ">
-                        <input formControlName="password " type="password " class="form-control " placeholder="Ingrese contraseña ">
-                        <!-- [ngClass]="{'is-invalid':(formRegistro.get('password')?.touched || formRegistro.get('password')?.dirty) && formRegistro.get('password')?.invalid}" -->
-                        <!-- <div class="invalid-feedback">
-                            <span *ngIf="formRegistro.get('password') .hasError('required')">Campo requerido e </span>
-                            <span *ngIf="!formRegistro.get('password') .hasError('minLenght')">Ingrese minimo 3 caracteres</span>
-                        </div> -->
-                    </div>
-                    <div class="form-group ">
-                        <input formControlName="email " type="text " class="form-control " placeholder="Ingrese E-Mail ">
-                        <!-- [ngClass]="{'is-invalid':(formRegistro.get('email')?.touched || formRegistro.get('email')?.dirty) && formRnvalid}egistro.get('email')?.i" -->
-                        <!-- <div class="invalid-feedback">
-                            <span *ngIf="formRegistro.get('email') .hasError('required')">Campo requerido e </span>
-                            <span *ngIf="!formRegistro.get('email') .hasError('minLenght')">Ingrese minimo 3 caracteres</span>
-                        </div> -->
->>>>>>> b291f2bcb1733dfadbcd884db0a633aa22c05cec
                     </div>
                     <div class="form-group">
 
@@ -47,7 +22,7 @@
                             <tbody>
                                 <tr>
                                     <td></td>
-                                    <td><button class="btn btn-success" style="border: #000 1px solid;">Registrar</button> </td> 
+                                    <td><button class="btn btn-success" style="border: #000 1px solid;">Registrar</button> </td>
                                     <!-- [disabled]="formRegistro.invalid" type="submit"  -->
                                     <td></td>
                                     <td><button style="border: #000 1px solid;  background-color:#697AC7" class="btn btn-success" routerLink="/login"> Ingresar </button> </td>
