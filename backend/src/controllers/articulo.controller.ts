@@ -145,8 +145,6 @@ export class ArticuloController {
         
     }
 
-
-
     public async obtenerArticulo(req:Request, res:Response){
 
         const db = await conexion();

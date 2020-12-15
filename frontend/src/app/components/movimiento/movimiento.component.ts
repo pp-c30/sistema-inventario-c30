@@ -5,6 +5,7 @@ import { ActivatedRoute } from "@angular/router";
 import { FormBuilder, FormGroup } from "@angular/forms";
 import { SeccionService } from "../../services/seccion.service";
 import { AutenticacionService } from "../../services/autenticacion.service";
+import { IDisp } from 'src/app/models/disponible';
 
 @Component({
   selector: 'app-movimiento',
@@ -14,6 +15,7 @@ import { AutenticacionService } from "../../services/autenticacion.service";
 export class MovimientoComponent implements OnInit {
 
   getMov:IMov[] = [];
+  listDisp:IDisp[] = [];
   id_articulo:Number;
   formMov:FormGroup;
   getSec = [];
@@ -22,11 +24,14 @@ export class MovimientoComponent implements OnInit {
 
     this.formMov = this.fb.group({
 
-      id_movimiento:[null],
+      id_md:[null],
       id_articulo:[null],
-      destino_seccion:[null],
+      destino_seccion:[0],
       fecha_hora:[null],
-      cantidad:[null]
+      cant:[null],
+      cantMov:[null],
+      estado:[-1],
+      destino_seccion_origen:[null]
     })
   }
 
@@ -43,6 +48,8 @@ export class MovimientoComponent implements OnInit {
     )
     this.listarMovimiento();
     this.listarSeccion();
+    this.listarMovDisp();
+    this.formMov.get('seccion').setValue(0);
   }
 
   listarSeccion(){
@@ -66,8 +73,42 @@ export class MovimientoComponent implements OnInit {
     )
   }
 
+  listarMovDisp(){
+
+    this.movService.getMovDisp(this.id_articulo).subscribe(
+
+      resultado => {
+
+        this.listDisp = resultado
+      }, error => {
+
+        console.log(error)
+      }
+    )}
+
+  btnMovimiento(id_md:Number, id_articulo:Number, cant:Number, destino_seccion_origen:Number){
+
+    this.formMov.get('id_md').setValue(id_md);
+    this.formMov.get('id_articulo').setValue(id_articulo);
+    this.formMov.get('cant').setValue(cant);
+    this.formMov.get('destino_seccion_origen').setValue(destino_seccion_origen);
+    this.formMov.get('destino_seccion').setValue(0);
+  }
+
   guardarMovimiento(){
 
+    this.movService.saveModDisp(this.formMov.value).subscribe(
+      respuesta=>{
 
+        this.formMov.reset();
+        this.formMov.get('seccion').setValue(0);
+        this.listarMovDisp();
+        this.listarMovimiento();
+        console.log(respuesta);
+      },error=>{
+
+        console.log(error);
+      }
+    )
   }
 }

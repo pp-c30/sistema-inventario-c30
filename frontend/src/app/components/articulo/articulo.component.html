@@ -1,22 +1,16 @@
 <!-- Botoncitos -->
 <div>
-
     <button (click)="btnNuevoArt()" type="button" class="btn btn-secondary" data-toggle="modal" data-target="#exampleModal" style="margin-right: 10px;">
-    Nuevo Artículo
-</button>
+        Nuevo Artículo
+    </button>
 
     <button type="button" class="btn btn-secondary" (click)="btnModoEdicion()" style="margin-right: 10px;">
-    Modo Edición
-</button>
-
-    <button type="button" class="btn btn-secondary" (click)="btnDadoBaja()" style="margin-right: 10px;">
-    Dados de Baja
-</button>
+        Modo Edición
+    </button>
 
     <app-seccion></app-seccion>
 
     <app-categoria></app-categoria>
-
 </div>
 
 <!-- Modal Artículo-->
@@ -137,6 +131,14 @@
                         <option [value]="seccion.id_seccion" *ngFor="let seccion of getSec">{{seccion.nombre_seccion}}</option>
                     </select>
                     </div>
+                    <div class="form-group">
+                        <select formControlName="estado" class="form-control">
+                            <option value="-1" selected disabled>Seleccione el Estado</option>
+                            <option value="0">En uso</option>
+                            <option value="1">En espera de mantenimiento</option>
+                            <option value="2">En reparación</option>
+                        </select>
+                    </div>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
@@ -228,7 +230,7 @@
                     <td *ngIf="op">
                         <!-- btn Movimiento -->
                         <div class="btn-group">
-                            <button (click)="btnMovimiento(articulo.id_articulo, articulo.cant_total)" type="button" class="btn btn-outline-warning" data-toggle="modal" data-target="#movimientoModal">
+                            <button (click)="btnMovimiento(articulo.id_articulo, articulo.cant)" type="button" class="btn btn-outline-warning" data-toggle="modal" data-target="#movimientoModal">
                                 <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-box-arrow-in-right" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
                                     <path fill-rule="evenodd" d="M6 3.5a.5.5 0 0 1 .5-.5h8a.5.5 0 0 1 .5.5v9a.5.5 0 0 1-.5.5h-8a.5.5 0 0 1-.5-.5v-2a.5.5 0 0 0-1 0v2A1.5 1.5 0 0 0 6.5 14h8a1.5 1.5 0 0 0 1.5-1.5v-9A1.5 1.5 0 0 0 14.5 2h-8A1.5 1.5 0 0 0 5 3.5v2a.5.5 0 0 0 1 0v-2z"/>
                                     <path fill-rule="evenodd" d="M11.854 8.354a.5.5 0 0 0 0-.708l-3-3a.5.5 0 1 0-.708.708L10.293 7.5H1.5a.5.5 0 0 0 0 1h8.793l-2.147 2.146a.5.5 0 0 0 .708.708l3-3z"/>

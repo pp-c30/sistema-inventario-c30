@@ -1,51 +1,125 @@
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-    <img src="../../../assets/img/logo-CET30.png" width="60" height="60" style="margin-right: 10px">
-    <a class="navbar-brand" href="#">Inventario CET 30</a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor02" aria-controls="navbarColor02" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-
-    <div class="collapse navbar-collapse" id="navbarColor02">
-        <ul class="navbar-nav ml-auto">
-            <li class="nav-item">
-                <button (click)="autService.logOut()" class="btn btn-outline-danger">Cerrar Sesión</button>
-            </li>
-        </ul>
+<div class="row" style="text-align: center; margin-top: 100px;">
+    <!-- Tabla Hoy -->
+    <div class="col-sm-6">
+        <h1>Actualidad</h1>
+        <table class="table table-dark">
+            <thead>
+                <tr>
+                    <th>Id Movimiento</th>
+                    <th>Sección Destino</th>
+                    <th>Cantidad</th>
+                    <th>Estado</th>
+                    <th>Fecha</th>
+                    <th>Mover</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let mov of listDisp">
+                    <td>{{mov.id_md}}</td>
+                    <td><span class="badge badge-pill badge-primary">{{mov.destino_seccion}}</span></td>
+                    <td>{{mov.cant}}</td>
+                    <td>
+                        <div *ngIf="mov.estado==0">
+                            <span class="badge badge-pill badge-success">En uso</span>
+                        </div>
+                        <div *ngIf="mov.estado==1">
+                            <span class="badge badge-pill badge-warning">En espera de mantenimiento</span>
+                        </div>
+                        <div *ngIf="mov.estado==2">
+                            <span class="badge badge-pill badge-danger">En reparación</span>
+                        </div>
+                    </td>
+                    <td>{{mov.fecha_hora}}</td>
+                    <td>
+                        <!-- btn movimiento -->
+                        <div class="btn-group">
+                            <button (click)="btnMovimiento(mov.id_md, mov.id_art, mov.cant, mov.destino_seccion)" type="button" class="btn btn-outline-warning" data-toggle="modal" data-target="#movimientoModal"><svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-box-arrow-in-right" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                                <path fill-rule="evenodd" d="M6 3.5a.5.5 0 0 1 .5-.5h8a.5.5 0 0 1 .5.5v9a.5.5 0 0 1-.5.5h-8a.5.5 0 0 1-.5-.5v-2a.5.5 0 0 0-1 0v2A1.5 1.5 0 0 0 6.5 14h8a1.5 1.5 0 0 0 1.5-1.5v-9A1.5 1.5 0 0 0 14.5 2h-8A1.5 1.5 0 0 0 5 3.5v2a.5.5 0 0 0 1 0v-2z"/>
+                                <path fill-rule="evenodd" d="M11.854 8.354a.5.5 0 0 0 0-.708l-3-3a.5.5 0 1 0-.708.708L10.293 7.5H1.5a.5.5 0 0 0 0 1h8.793l-2.147 2.146a.5.5 0 0 0 .708.708l3-3z"/>
+                              </svg>
+                        </button>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
     </div>
-</nav>
-<div style="text-align: center; margin-top: 100px;">
-    <table class="table table-dark">
-        <thead>
-            <tr>
-                <th>Id Movimiento</th>
-                <th>Id Articulo</th>
-                <th>Sección Destino</th>
-                <th>Fecha</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr *ngFor="let mov of getMov">
-                <td>{{mov.id_movimiento}}</td>
-                <td>{{mov.id_articulo}}</td>
-                <td>{{mov.destino_seccion}}</td>
-                <td>{{mov.fecha_hora}}</td>
-            </tr>
-        </tbody>
-    </table>
+    <!-- Tabla Historial -->
+    <div class="col-sm-6">
+        <h1>Historial</h1>
+        <table class="table table-dark">
+            <thead>
+                <tr>
+                    <th>Id Movimiento</th>
+                    <th>Sección Destino</th>
+                    <th>Cantidad</th>
+                    <th>Estado</th>
+                    <th>Fecha</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let mov of getMov">
+                    <td>{{mov.id_movimiento}}</td>
+                    <td>{{mov.destino_seccion}}</td>
+                    <td>{{mov.cantidad}}</td>
+                    <td>
+                        <div *ngIf="mov.estado==0">
+                            <span class="badge badge-pill badge-success">En uso</span>
+                        </div>
+                        <div *ngIf="mov.estado==1">
+                            <span class="badge badge-pill badge-warning">En espera de mantenimiento</span>
+                        </div>
+                        <div *ngIf="mov.estado==2">
+                            <span class="badge badge-pill badge-danger">En reparación</span>
+                        </div>
+                    </td>
+                    <td>{{mov.fecha_hora}}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
 </div>
-<div>
-    <form [formGroup]="formMov" (ngSubmit)="guardarMovimiento()">
-        <input type="hidden" formControlName="id_articulo">
-        <input type="hidden" formControlName="cantidad_total">
-        <div class="form-group">
-            <input placeholder="Cantidad" class="form-control" formControlName="cantidad">
+<!-- modalMovimiento -->
+<div class="modal fade" id="movimientoModal">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+            </div>
+            <!-- formulario -->
+            <form [formGroup]="formMov" (ngSubmit)="guardarMovimiento()">
+                <div class="modal-body">
+                    <input type="hidden" formControlName="id_md">
+                    <input type="hidden" formControlName="id_articulo">
+                    <input type="hidden" formControlName="destino_seccion_origen">
+                    <input type="hidden" formControlName="cant">
+                    <!-- cantidad -->
+                    <div class="form-group">
+                        <input placeholder="Cantidad" class="form-control" formControlName="cantMov">
+                    </div>
+                    <!-- destino seccion -->
+                    <div class="form-group">
+                        <select formControlName="destino_seccion" class="form-control" id="exampleSelect1">
+                        <option value="0" selected disabled>Seleccione la Sección</option>
+                        <option [value]="seccion.id_seccion" *ngFor="let seccion of getSec">{{seccion.nombre_seccion}}</option>
+                    </select>
+                    </div>
+                    <div class="form-group">
+                        <select formControlName="estado" class="form-control">
+                            <option value="-1" selected disabled>Seleccione el Estado</option>
+                            <option value="0">En uso</option>
+                            <option value="1">En espera de mantenimiento</option>
+                            <option value="2">En reparación</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                    <button type="submit" class="btn btn-outline-success">Mover</button>
+                </div>
+            </form>
         </div>
-        <div class="form-group">
-            <select formControlName="destino_seccion" class="form-control" id="exampleSelect1">
-                <option value="0" selected disabled>Seleccione la Sección</option>
-                <option [value]="seccion.id_seccion" *ngFor="let seccion of getSec">{{seccion.nombre_seccion}}</option>
-            </select>
-        </div>
-        <button type="submit" class="btn btn-outline-success">Mover</button>
-    </form>
+    </div>
 </div>

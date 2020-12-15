@@ -6,7 +6,7 @@ import { ArticuloService } from "../../services/articulo.service";
 import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 import { IArt } from 'src/app/models/articulo';
 import { NgxSpinnerService } from "ngx-spinner";
-import {NgbDateStruct} from '@ng-bootstrap/ng-bootstrap';
+import { NgbDateStruct } from '@ng-bootstrap/ng-bootstrap';
 import { MovimientoService } from "../../services/movimiento.service";
 
 interface HTMLInputEvent{
@@ -61,7 +61,7 @@ export class ArticuloComponent implements OnInit {
       fecha_hora:[null],
       cantidad:[null],
       cantidad_total:[null],
-      estado:[0]
+      estado:[-1]
     })
   }
   // esto se inicia cuando arranca el componente

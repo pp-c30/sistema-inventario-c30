@@ -9,7 +9,11 @@ const enrutadorMovimiento = Router();
 
 enrutadorMovimiento.route('/movimiento/:id_articulo').get(validarToken, movimientoController.listarMovimiento);
 
+enrutadorMovimiento.route('/mov_disponible/:id_art').get(validarToken, movimientoController.listarMovDisponible);
+
 enrutadorMovimiento.route('/movimiento').post(movimientoController.guardarMovimiento);
+
+enrutadorMovimiento.route('/mov_disponible').post(movimientoController.guardarMovDisponible);
 
 enrutadorMovimiento.route('/movimiento/:id_movimiento').delete(movimientoController.eliminarMovimiento);
 
