@@ -46,7 +46,7 @@ export class ArticuloComponent implements OnInit {
       fecha_alta:['',[Validators.required]],
       fecha_baja:[''],
       descripcion:['', [Validators.required,Validators.minLength(3)]],
-      seccion:[0,[Validators.required]],
+      seccion:[1,[Validators.required]],
       estado:[''],
       valor:['',[Validators.required,Validators.minLength(2)]],
       img:[''],
@@ -77,7 +77,7 @@ export class ArticuloComponent implements OnInit {
     this.imgPreview = '';
     this.formArt.reset();
     this.formArt.get('categoria').setValue(0);
-    this.formArt.get('seccion').setValue(0);
+    this.formArt.get('seccion').setValue(1);
   }
 
   btnModoEdicion(){

@@ -25,6 +25,8 @@
             <form [formGroup]="formArt" (ngSubmit)="guardarArticulo()" novalidate>
                 <div class="modal-body">
                     <input formControlName="id_articulo" type="hidden" class="form-control">
+                    <input formControlName="seccion" type="hidden" class="form-control">
+                    <input formControlName="estado" type="hidden" class="form-control">
                     <div class="form-group">
                         <div class="row">
                             <div class="col-sm-6">
@@ -50,20 +52,11 @@
                         </div>
                     </div>
                     <div class="form-group">
-                        <select formControlName="seccion" class="form-control" id="exampleSelect1">
-              <option value="0" selected disabled>Seleccione la Sección</option>
-              <option [value]="seccion.id_seccion" *ngFor="let seccion of getSec">{{seccion.nombre_seccion}}</option>
-            </select>
-                    </div>
-                    <div class="form-group">
                         <input [ngClass]="{'is-invalid':(formArt.get('descripcion')?.touched || formArt.get('descripcion')?.dirty) && formArt.get('descripcion')?.invalid}" formControlName="descripcion" placeholder="Añada un Descripción para el Artículo" type="text" class="form-control">
                         <div class="invalid-feedback">
                             <span *ngIf="formArt.get('descripcion') .hasError('required')">Campo requerido e </span>
                             <span *ngIf="!formArt.get('descripcion') .hasError('minLenght')">Ingrese minimo 3 caracteres</span>
                         </div>
-                    </div>
-                    <div [style]="display" class="form-group">
-                        <input formControlName="estado" placeholder="¿En qué estado se encuentra?" type="text" class="form-control">
                     </div>
                     <div class="form-group">
                         <label class="control-label">Valor Estimado</label>
@@ -166,7 +159,6 @@
                     <th>Categoría</th>
                     <th>Cantidad Total</th>
                     <th>Cantidad Disponible</th>
-                    <th>Sección</th>
                     <th>Descripción del bien</th>
                     <th>Valor</th>
                     <th>OBSERV.</th>
@@ -189,9 +181,6 @@
                     </td>
                     <td>
                         <span class="badge badge-success">{{articulo.cant}}</span>
-                    </td>
-                    <td>
-                        {{articulo.seccion}}
                     </td>
                     <td>
                         {{articulo.descripcion}}
