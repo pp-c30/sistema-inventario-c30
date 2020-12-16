@@ -31,6 +31,7 @@ export class MovimientoComponent implements OnInit {
       cant:[null],
       cantMov:[null],
       estado:[-1],
+      estado_origen:[null],
       destino_seccion_origen:[null]
     })
   }
@@ -49,7 +50,7 @@ export class MovimientoComponent implements OnInit {
     this.listarMovimiento();
     this.listarSeccion();
     this.listarMovDisp();
-    this.formMov.get('seccion').setValue(0);
+    this.formMov.get('destino_seccion').setValue(0);
   }
 
   listarSeccion(){
@@ -86,13 +87,15 @@ export class MovimientoComponent implements OnInit {
       }
     )}
 
-  btnMovimiento(id_md:Number, id_articulo:Number, cant:Number, destino_seccion_origen:Number){
+  btnMovimiento(id_md:Number, id_articulo:Number, cant:Number, estado_origen:Number, destino_seccion_origen:Number){
 
     this.formMov.get('id_md').setValue(id_md);
     this.formMov.get('id_articulo').setValue(id_articulo);
     this.formMov.get('cant').setValue(cant);
+    this.formMov.get('estado_origen').setValue(estado_origen);
     this.formMov.get('destino_seccion_origen').setValue(destino_seccion_origen);
     this.formMov.get('destino_seccion').setValue(0);
+    this.formMov.get('estado').setValue(0);
   }
 
   guardarMovimiento(){
@@ -101,7 +104,7 @@ export class MovimientoComponent implements OnInit {
       respuesta=>{
 
         this.formMov.reset();
-        this.formMov.get('seccion').setValue(0);
+        this.formMov.get('destino_seccion').setValue(0);
         this.listarMovDisp();
         this.listarMovimiento();
         console.log(respuesta);

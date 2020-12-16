@@ -10,7 +10,7 @@ export class MovimientoController {
         
         let id_articulo = req.params.id_articulo;
 
-        let mov = await db.query('select *,DATE_FORMAT(fecha_hora, "%d-%m-%Y %h:%m") as fecha_hora from movimiento where id_articulo = ?', [id_articulo]);
+        let mov = await db.query('select *, s.nombre_seccion as ns,DATE_FORMAT(m.fecha_hora, "%d-%m-%Y %h:%m") as fecha_hora from movimiento m, seccion s where m.destino_seccion = s.id_seccion and m.id_articulo = ? order by m.id_movimiento desc', [id_articulo]);
         
         return res.json(mov);
     }
@@ -21,7 +21,7 @@ export class MovimientoController {
         
         let id_articulo = req.params.id_art;
 
-        let mov = await db.query('select *,DATE_FORMAT(fecha_hora, "%d-%m-%Y %h:%m") as fecha_hora from mov_disponible where id_art = ?', [id_articulo]);
+        let mov = await db.query('select *, s.nombre_seccion as ns,DATE_FORMAT(m.fecha_hora, "%d-%m-%Y %h:%m") as fecha_hora from mov_disponible m, seccion s where m.destino_seccion = s.id_seccion and m.id_art = ? order by m.destino_seccion desc', [id_articulo]);
         
         return res.json(mov);
     }
@@ -33,6 +33,88 @@ export class MovimientoController {
         const cant=req.body.cant;
 
         const cantMov=req.body.cantMov;
+
+        if (req.body.destino_seccion == 1) {
+
+            
+
+            if (cant==cantMov) {
+
+                const resultado = await db.query("select * from articulo where id_articulo = ?", [req.body.id_articulo]);
+
+                const art = {
+
+                    cant: Number(req.body.cantMov) + Number(resultado[0].cant)
+                } 
+
+                await db.query("update articulo set ? where id_articulo = ?", [art, req.body.id_articulo]);
+
+                await db.query("delete from mov_disponible where id_md = ?", [req.body.id_md]);
+
+                const mov:IMov = {
+
+                    id_articulo:req.body.id_articulo,
+                    destino_seccion:req.body.destino_seccion,
+                    fecha_hora:new Date(),
+                    cantidad:req.body.cant,
+                    estado:req.body.estado
+                }
+        
+                await db.query("insert into movimiento set ?",[mov]);
+
+            }else{
+
+                if (cantMov<cant) {
+
+                    const resultado = await db.query("select * from articulo where id_articulo = ?", [req.body.id_articulo]);
+
+                      const art = {
+
+                    cant: Number(req.body.cantMov) + Number(resultado[0].cant)
+                    }
+
+                    await db.query("update articulo set ? where id_articulo = ?", [art, req.body.id_articulo]);
+
+                    const id_md=req.body.id_md;
+
+                    const disp = {
+    
+                        fecha_hora:new Date(),
+                        cant:req.body.cant-req.body.cantMov,
+                        estado:req.body.estado_origen,
+                    }
+    
+                    await db.query("update mov_disponible set ? where id_md = ?", [disp, id_md]);
+
+                    const mov:IMov = {
+
+                        id_articulo:req.body.id_articulo,
+                        destino_seccion:req.body.destino_seccion_origen,
+                        fecha_hora:new Date(),
+                        cantidad:req.body.cant-req.body.cantMov,
+                        estado:req.body.estado_origen
+                    }
+    
+                    const mov2:IMov = {
+    
+                        id_articulo:req.body.id_articulo,
+                        destino_seccion:req.body.destino_seccion,
+                        fecha_hora:new Date(),
+                        cantidad:req.body.cantMov,
+                        estado:req.body.estado
+                    }
+            
+                    await db.query("insert into movimiento set ?",[mov]);
+    
+                    await db.query("insert into movimiento set ?",[mov2]);
+                }          
+            }
+
+
+
+        }else{
+
+
 
         if (cant==cantMov) {
             
@@ -65,7 +147,8 @@ export class MovimientoController {
                 const disp = {
 
                     fecha_hora:new Date(),
-                    cant:req.body.cant-req.body.cantMov
+                    cant:req.body.cant-req.body.cantMov,
+                    estado:req.body.estado_origen,
                 }
 
                 await db.query("update mov_disponible set ? where id_md = ?", [disp, id_md]);
@@ -75,7 +158,8 @@ export class MovimientoController {
                     fecha_hora:new Date(),
                     destino_seccion:req.body.destino_seccion,
                     cant:req.body.cantMov,
-                    id_art:req.body.id_articulo
+                    id_art:req.body.id_articulo,
+                    estado:req.body.estado
                 }
 
                 await db.query("insert into mov_disponible set ?",[dispNew]);
@@ -85,10 +169,10 @@ export class MovimientoController {
                 const mov:IMov = {
 
                     id_articulo:req.body.id_articulo,
-                    destino_seccion:req.body.destino_seccion,
+                    destino_seccion:req.body.destino_seccion_origen,
                     fecha_hora:new Date(),
                     cantidad:req.body.cant-req.body.cantMov,
-                    estado:req.body.estado
+                    estado:req.body.estado_origen
                 }
 
                 const mov2:IMov = {
@@ -96,7 +180,8 @@ export class MovimientoController {
                     id_articulo:req.body.id_articulo,
                     destino_seccion:req.body.destino_seccion,
                     fecha_hora:new Date(),
-                    cantidad:req.body.cantMov
+                    cantidad:req.body.cantMov,
+                    estado:req.body.estado
                 }
         
                 await db.query("insert into movimiento set ?",[mov]);
@@ -104,6 +189,8 @@ export class MovimientoController {
                 await db.query("insert into movimiento set ?",[mov2]);
             }
         }
+        }
+        res.json('Movimiento Exitoso');
     }
     
     public async guardarMovimiento(req:Request, res:Response){

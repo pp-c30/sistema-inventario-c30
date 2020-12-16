@@ -6,4 +6,5 @@ export interface IDisp {
     fecha_hora:Date;
     destino_seccion:number;
     estado:Number;
+    ns:String
 }
