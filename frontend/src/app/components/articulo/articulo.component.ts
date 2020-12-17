@@ -119,12 +119,13 @@ export class ArticuloComponent implements OnInit {
     //Actualizar
       this.artService.updateArticulo(this.formArt.value,this.file).subscribe(
         resultado=>{
+
           console.log(resultado);
           this.imgPreview = '';
           this.formArt.reset();
+          this.formArt.get('categoria').setValue(0);
           this.listarArticulos();
-      this.spinner.hide();
-
+          this.spinner.hide();
         },
         error=> console.log(error)
         
@@ -140,6 +141,7 @@ export class ArticuloComponent implements OnInit {
         console.log(resultado);
         this.imgPreview = '';
         this.formArt.reset();
+        this.formArt.get('categoria').setValue(0);
         this.listarArticulos();
         this.spinner.hide();
 

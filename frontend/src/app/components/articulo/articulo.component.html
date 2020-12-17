@@ -74,7 +74,7 @@
                         </div>
                     </div>
                     <div class="form-group">
-                        <input [ngClass]="{'is-invalid':(formArt.get('origen')?.touched || formArt.get('origen')?.dirty) && formArt.get('origen')?.invalid}" formControlName="origen" placeholder="¿Cuál es la procedencia de los Artículos?" type="text" class="form-control">
+                        <input [ngClass]="{'is-invalid':(formArt.get('origen')?.touched || formArt.get('origen')?.dirty) && formArt.get('origen')?.invalid}" formControlName="origen" placeholder="OBSERV." type="text" class="form-control">
                         <div class="invalid-feedback">
                             <span *ngIf="formArt.get('origen') .hasError('required')">Campo requerido e </span>
                             <span *ngIf="!formArt.get('origen') .hasError('minLenght')">Ingrese minimo 3 caracteres</span>
