@@ -1,7 +1,29 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <button type="button" class="btn btn-outline-secondary" routerLink="/home" style="margin-right: 20px;">
+        <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" fill="currentColor" class="bi bi-arrow-left-circle-fill" viewBox="0 0 16 16">
+            <path fill-rule="evenodd" d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-4.5.5a.5.5 0 0 0 0-1H5.707l2.147-2.146a.5.5 0 1 0-.708-.708l-3 3a.5.5 0 0 0 0 .708l3 3a.5.5 0 0 0 .708-.708L5.707 8.5H11.5z"/>
+          </svg>
+            </button>
+    <a class="navbar-brand" routerLink="/home">
+        <img src="../../../assets/img/logo-CET30.png" width="60" height="60" style="margin-right: 10px">Inventario CET 30</a>
+    <div class="collapse navbar-collapse" id="navbarColor02">
+        <ul class="navbar-nav ml-auto">
+            <li class="nav-item">
+                <button (click)="autService.logOut()" class="btn btn-outline-danger">Cerrar Sesión</button>
+            </li>
+        </ul>
+    </div>
+</nav>
+
 <div class="row" style="text-align: center; margin-top: 100px;">
-    <!-- Tabla Hoy -->
+    <!-- Tabla Estado y Ubicación Actual -->
     <div class="col-sm-6">
         <h1>Estado y Ubicación Actual</h1>
+        <div class="col-sm-4">
+            <div class="form-group">
+                <input [(ngModel)]="buscar1" type="text" class="form-control" placeholder="Filtrar">
+            </div>
+        </div>
         <table class="table table-dark">
             <thead>
                 <tr>
@@ -14,7 +36,7 @@
                 </tr>
             </thead>
             <tbody>
-                <tr *ngFor="let mov of listDisp">
+                <tr *ngFor="let mov of listDisp | filter:buscar1">
                     <td>{{mov.id_md}}</td>
                     <td><span class="badge badge-pill badge-primary">{{mov.ns}}</span></td>
                     <td>{{mov.cant}}</td>
@@ -47,6 +69,11 @@
     <!-- Tabla Historial -->
     <div class="col-sm-6">
         <h1>Historial</h1>
+        <div class="col-sm-4">
+            <div class="form-group">
+                <input [(ngModel)]="buscar2" type="text" class="form-control" placeholder="Filtrar">
+            </div>
+        </div>
         <table class="table table-dark">
             <thead>
                 <tr>
@@ -58,7 +85,7 @@
                 </tr>
             </thead>
             <tbody>
-                <tr *ngFor="let mov of getMov">
+                <tr *ngFor="let mov of getMov | filter:buscar2">
                     <td>{{mov.id_movimiento}}</td>
                     <td>{{mov.ns}}</td>
                     <td>{{mov.cantidad}}</td>

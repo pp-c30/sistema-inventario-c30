@@ -19,6 +19,8 @@ export class MovimientoComponent implements OnInit {
   id_articulo:Number;
   formMov:FormGroup;
   getSec = [];
+  buscar1:any;
+  buscar2:any;
 
   constructor(public autService:AutenticacionService, private seService:SeccionService, private fb:FormBuilder, private activated:ActivatedRoute, private movService:MovimientoService) {
 
